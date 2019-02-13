@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calcula tu PPA</string>
+    <string name="nombre_materia">Materia</string>
+    <string name="numero_creditos">Creditos</string>
+    <string name="nota_materia">Nota</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="error_input">Espacio Requerido</string>
+
+</resources>
