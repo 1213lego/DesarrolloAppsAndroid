@@ -49,8 +49,8 @@
             android:ems="10"
             android:hint="@string/numero_creditos"
             android:inputType="number"
-            android:textAlignment="center"
-            android:nextFocusRight="@id/txtNota"/>
+            android:nextFocusRight="@id/txtNota"
+            android:textAlignment="center" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -73,8 +73,7 @@
             android:ems="10"
             android:hint="@string/nota_materia"
             android:inputType="numberDecimal"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

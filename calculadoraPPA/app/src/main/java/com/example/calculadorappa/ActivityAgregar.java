@@ -142,9 +142,9 @@ public class ActivityAgregar extends AppCompatActivity
         validarEditText(nombre.getText(),inputNombre);
         validarEditText(creditos.getText(),inputCreditos);
         validarEditText(nota.getText(),inputNota);
-        if(inputNombre.isErrorEnabled() || inputNota.isErrorEnabled() || inputCreditos.isErrorEnabled())
+        if(inputNombre.getError()!=null|| inputNota.getError()!=null || inputCreditos.getError()!=null)
         {
-            Toast.makeText(this, "Debe llenar todos lo campos", Toast.LENGTH_SHORT).show();
+
         }
         else
         {
