@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class ActivityAgregar extends AppCompatActivity
 {
     public final static String NUEVA_MATERIA="NUEVA MATERIA";
+
     private EditText nombre;
     private EditText creditos;
     private EditText nota;
@@ -102,7 +103,8 @@ public class ActivityAgregar extends AppCompatActivity
         });
 
         nota=findViewById(R.id.txtNota);
-        nota.addTextChangedListener(new TextWatcher() {
+        nota.addTextChangedListener(new TextWatcher()
+        {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {

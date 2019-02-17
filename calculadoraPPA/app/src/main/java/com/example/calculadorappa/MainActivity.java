@@ -19,15 +19,19 @@ public class MainActivity extends AppCompatActivity
 {
     public static final int REQUEST_CODE_AGREGAR_MATERIA=0;
 
-    private ArrayList<Materia> materias;
+    private ServicioPpa servicioPpa;
+    //Para el recyclerview
     private RecyclerView recyclerViewMaterias;
+    private MateriaAdapter materiaAdapter;
+
     private TextView txtPpa;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        materias=new ArrayList<>();
+        servicioPpa=new ServicioPpa();
         txtPpa=findViewById(R.id.txtPpa);
         //Inicializacion del RecyclerView
         inicializarRecyclerView();
@@ -36,8 +40,8 @@ public class MainActivity extends AppCompatActivity
     {
         recyclerViewMaterias=findViewById(R.id.recyclerViewMaterias);
         recyclerViewMaterias.setLayoutManager(new LinearLayoutManager(this));
-        final MateriaAdapter materiaAdapter= new MateriaAdapter();
-        materiaAdapter.setMaterias(materias);
+        materiaAdapter= new MateriaAdapter();
+        materiaAdapter.setMaterias(servicioPpa.getMaterias());
         recyclerViewMaterias.setAdapter(materiaAdapter);
         //funcionalidad que permite eliminar un elemento deslizandolo
         //da la funcionalidad de swipe and move a cada item del recycler view
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction)
             {
-                materias.remove(viewHolder.getAdapterPosition());
+                servicioPpa.eliminarMateria(viewHolder.getAdapterPosition());
                 recyclerViewMaterias.removeViewAt(viewHolder.getAdapterPosition());
                 materiaAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
                 materiaAdapter.notifyDataSetChanged();
@@ -77,20 +81,15 @@ public class MainActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Materia materia=(Materia) data.getSerializableExtra(ActivityAgregar.NUEVA_MATERIA);
-                materias.add(materia);
+                servicioPpa.agregarMateria(materia);
+                materiaAdapter.notifyDataSetChanged();
                 calculaPpa();
             }
         }
     }
     public void calculaPpa()
     {
-        double sum=0.0;
-        int sumCreditos=0;
-        for(int i=0; i<materias.size();i++)
-        {
-            sum+=materias.get(i).getNota()*materias.get(i).getCreditos();
-            sumCreditos+=materias.get(i).getCreditos();
-        }
-        txtPpa.setText("Tu ppa es de "+sum/sumCreditos);
+
+        txtPpa.setText("Tu ppa es de: "+String.format("%.2f",servicioPpa.calcularPpa()));
     }
 }
