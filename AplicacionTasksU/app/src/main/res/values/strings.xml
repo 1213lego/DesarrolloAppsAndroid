@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">UnibagueApp</string>
+    <string name="titAsignaturas">Asignaturas</string>
+    <string name="nomAsignatura">Nombre Asignatura</string>
+    <string name="agregarAsignatura">Agregar Asignatura</string>
+    <string name="nomDocente">Nombre Docente</string>
+    <string name="notaFinal">Nota final</string>
+    <string name="numeroCreditos">Numero Creditos</string>
+    <string name="guardar">Guardar</string>
+    <string name="labNombreDocente">Nombre Docente:</string>
+    <string name="labNombreAsignatura">Nombre Asignatura:</string>
+    <string name="labNota">Nota:</string>
+    <string name="labCreditos">Creditos:</string>
+    <string name="btncalcularppa">Calcular PPA</string>
+    <string name="labTuPromedio">Tu PPA es de :</string>
+    <string name="error_input">Espacio Requerido</string>
+</resources>

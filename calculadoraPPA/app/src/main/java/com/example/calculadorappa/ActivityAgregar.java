@@ -35,7 +35,6 @@ public class ActivityAgregar extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar);
 
-
         nombre=findViewById(R.id.txtNombre);
         nombre.addTextChangedListener(new TextWatcher()
         {
@@ -169,4 +168,6 @@ public class ActivityAgregar extends AppCompatActivity
             textInputLayout.setError(null);
         }
     }
+
+
 }
