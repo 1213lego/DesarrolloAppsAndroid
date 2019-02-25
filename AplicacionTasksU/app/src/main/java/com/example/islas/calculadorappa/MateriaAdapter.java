@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
 import java.util.ArrayList;
 
 
 public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaHolder>
 {
     private ArrayList<Asignatura> materias;
+    private OnItemClickListener listener;
     //Se ejecuta al añadirse nuevo item
     //Crea una vista MateriaHolder y la conecta con los recursos definido en item_materia.xml
     @NonNull
@@ -44,6 +43,18 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
         this.materias = materias;
     }
 
+    public interface OnItemClickListener
+    {
+        void onItemClick(Asignatura asignatura);
+    }
+
+    public  void setOnItemClickListener(OnItemClickListener onItemClickListener)
+    {
+        listener=onItemClickListener;
+    }
+
+
+
     //Esta clase representa cada elemento de la coleccion del RecyclerView, item
     class MateriaHolder extends RecyclerView.ViewHolder
     {
@@ -60,6 +71,19 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
             creditos=itemView.findViewById(R.id.txtCreditos);
             nota=itemView.findViewById(R.id.txtNota);
 
+            itemView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    int pos=getAdapterPosition();
+                    if(listener!=null && pos!=RecyclerView.NO_POSITION)
+                    {
+                        listener.onItemClick(materias.get(pos));
+                    }
+
+                }
+            });
         }
     }
 }

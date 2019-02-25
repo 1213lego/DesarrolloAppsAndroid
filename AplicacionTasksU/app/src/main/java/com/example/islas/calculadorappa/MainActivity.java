@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -60,6 +61,15 @@ public class MainActivity extends AppCompatActivity
                 calculaPpa();
             }
         }).attachToRecyclerView(rv);
+        //Evento al tocar un item del recycler view
+        ma.setOnItemClickListener(new MateriaAdapter.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(Asignatura asignatura)
+            {
+                Toast.makeText(MainActivity.this, "lanzar activity con la vista de la materia", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void agregarAsignatura(View view)
