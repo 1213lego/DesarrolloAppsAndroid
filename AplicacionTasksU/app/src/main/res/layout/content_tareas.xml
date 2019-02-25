@@ -8,4 +8,10 @@
     tools:context=".tareasActivity"
     tools:showIn="@layout/activity_tareas">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerAsignaturas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/tarea_item"/>
+
 </android.support.constraint.ConstraintLayout>

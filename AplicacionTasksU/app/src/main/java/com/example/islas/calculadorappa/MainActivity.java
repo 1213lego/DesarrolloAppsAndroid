@@ -9,11 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGAR = 0;
+    public final static String TAREAS="Tareas";
 
     private TextView txtPPA;
     private ServicioCalPPA servicioCalPPA;
@@ -67,7 +67,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(Asignatura asignatura)
             {
-                Toast.makeText(MainActivity.this, "lanzar activity con la vista de la materia", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MainActivity.this, tareasActivity.class);
+                intent.putExtra(TAREAS,asignatura.getTareas());
+                startActivity(intent);
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.example.islas.calculadorappa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Asignatura implements Serializable
 {
@@ -10,14 +11,16 @@ public class Asignatura implements Serializable
     private int creditos;
     private double notafinal;
     private double notaProducto;
+    private ArrayList<Tarea> tareas;
 
-
-    public Asignatura(String nombreAsignatura, String nombreDocente, int numerocreditos, double notafinal) {
+    public Asignatura(String nombreAsignatura, String nombreDocente, int numerocreditos, double notafinal)
+    {
         this.nombreAsignatura = nombreAsignatura;
         this.nombreDocente = nombreDocente;
         this.creditos = numerocreditos;
         this.notafinal = notafinal;
         this.notaProducto=0.0;
+        this.tareas=new ArrayList<>();
     }
 
     public String getNombreAsignatura() {
@@ -56,5 +59,13 @@ public class Asignatura implements Serializable
     {
         notaProducto=notafinal*creditos;
         return notaProducto;
+    }
+
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(ArrayList<Tarea> tareas) {
+        this.tareas = tareas;
     }
 }

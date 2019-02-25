@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder> {
+public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
+{
 
     private ArrayList<Tarea> tareas;
+    private OnItemClickListener listener;
     //Se ejecuta al añadirse nuevo item
     //Crea una vista MateriaHolder y la conecta con los recursos definido en item_materia.xml
     @NonNull
@@ -44,6 +46,15 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
         this.tareas = tareas;
     }
 
+    public interface OnItemClickListener
+    {
+        public void onItemClick(Tarea tarea);
+    }
+    public void setOnClickListener(OnItemClickListener listener)
+    {
+        this.listener=listener;
+    }
+
     //Esta clase representa cada elemento de la coleccion del RecyclerView, item
     class TareaHolder extends RecyclerView.ViewHolder
     {
@@ -59,6 +70,18 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
             descripcion=itemView.findViewById(R.id.txtDescripcion);
             //fecha=itemView.findViewById(R.id.txtCreditos);
             porcentaje=itemView.findViewById(R.id.txtPorcentaje);
+            itemView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    int pos=getAdapterPosition();
+                    if(listener!=null && pos!=RecyclerView.NO_POSITION)
+                    {
+                        listener.onItemClick(tareas.get(pos));
+                    }
+                }
+            });
 
         }
     }
