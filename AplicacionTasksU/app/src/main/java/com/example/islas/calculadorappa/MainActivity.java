@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGAR = 0;
+    public final static String TAREAS="Tareas";
 
     private TextView txtPPA;
     private ServicioCalPPA servicioCalPPA;
@@ -60,6 +61,17 @@ public class MainActivity extends AppCompatActivity
                 calculaPpa();
             }
         }).attachToRecyclerView(rv);
+        //Evento al tocar un item del recycler view
+        ma.setOnItemClickListener(new MateriaAdapter.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(Asignatura asignatura)
+            {
+                Intent intent=new Intent(MainActivity.this, tareasActivity.class);
+                intent.putExtra(TAREAS,asignatura.getTareas());
+                startActivity(intent);
+            }
+        });
     }
 
     public void agregarAsignatura(View view)

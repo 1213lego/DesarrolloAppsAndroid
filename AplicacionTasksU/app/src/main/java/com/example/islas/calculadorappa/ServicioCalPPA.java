@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class ServicioCalPPA
 {
-
-
     private ArrayList<Asignatura> asignaturas;
     private double ppa;
 

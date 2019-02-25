@@ -1,15 +1,18 @@
 package com.example.islas.calculadorappa;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Tarea {
+public class Tarea implements Serializable
+{
 
     private String nombre;
     private String descripcion;
     private Date fecha;
     private double porcentaje;
 
-    public Tarea(String nombre, String descripcion, Date fecha, double porcentaje) {
+    public Tarea(String nombre, String descripcion, Date fecha, double porcentaje)
+    {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
