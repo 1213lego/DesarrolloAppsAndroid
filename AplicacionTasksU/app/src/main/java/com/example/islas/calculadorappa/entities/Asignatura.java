@@ -12,6 +12,7 @@ public class Asignatura implements Serializable
     private double notafinal;
     private double notaProducto;
     private ArrayList<Tarea> tareas;
+    private double progreso;
 
     public Asignatura(String nombreAsignatura, String nombreDocente, int numerocreditos, double notafinal)
     {
@@ -21,6 +22,7 @@ public class Asignatura implements Serializable
         this.notafinal = notafinal;
         this.notaProducto=0.0;
         this.tareas=new ArrayList<>();
+        this.progreso = 0.0;
     }
 
     public String getNombreAsignatura() {

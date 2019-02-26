@@ -17,6 +17,6 @@
     <string name="title_activity_tareas">tareasActivity</string>
     <string name="labNombreTarea">Nombre de la Tarea:</string>
     <string name="labDescripcion">Descripcion de la Tarea:</string>
-    <string name="labFechaEntrega">Fecha de entrega</string>
+    <string name="labFechaEntrega">Fecha de entrega:</string>
     <string name="labPorcentaje">Porcentaje: </string>
 </resources>
