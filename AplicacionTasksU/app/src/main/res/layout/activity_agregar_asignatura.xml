@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     tools:context=".activities.AgregarAsignatura">
 
     <ImageView
@@ -38,7 +37,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/fondorectangle"
+        android:background="@drawable/vectorcuadrosagregar"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/nomDocente"
@@ -55,7 +54,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/fondorectangle"
+        android:background="@drawable/vectorcuadrosagregar"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/numeroCreditos"
@@ -72,7 +71,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/fondorectangle"
+        android:background="@drawable/vectorcuadrosagregar"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/notaFinal"
@@ -103,7 +102,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/fondorectangle"
+        android:background="@drawable/vectorcuadrosagregar"
         android:ems="10"
         android:focusedByDefault="true"
         android:gravity="center"

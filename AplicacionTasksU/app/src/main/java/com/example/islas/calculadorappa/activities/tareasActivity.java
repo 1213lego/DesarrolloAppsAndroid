@@ -50,7 +50,7 @@ public class tareasActivity extends AppCompatActivity
 
     private void inicializarRecyclerView()
     {
-        rv=findViewById(R.id.recyclerAsignaturas);
+        rv=findViewById(R.id.recyclerTareas);
         rv.setLayoutManager(new LinearLayoutManager(this));
         ta=new TareaAdapter();
         ta.setTareas(tareas);

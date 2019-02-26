@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activities.agregarTareaActivity"
+            android:label="@string/title_activity_agregar_tarea"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".activities.tareasActivity"
             android:label="@string/title_activity_tareas"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

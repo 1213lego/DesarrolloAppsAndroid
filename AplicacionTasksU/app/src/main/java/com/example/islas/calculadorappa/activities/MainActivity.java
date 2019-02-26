@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     }
     private void inicializarRecyclerView()
     {
-        rv=findViewById(R.id.recyclerAsignaturas);
+        rv=findViewById(R.id.recyclerTareas);
         rv.setLayoutManager(new LinearLayoutManager(this));
         ma= new MateriaAdapter();
         ma.setMaterias(servicioCalPPA.getAsignaturas());
