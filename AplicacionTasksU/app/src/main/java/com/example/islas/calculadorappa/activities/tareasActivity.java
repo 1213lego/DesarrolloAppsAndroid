@@ -1,4 +1,4 @@
-package com.example.islas.calculadorappa;
+package com.example.islas.calculadorappa.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+
+import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Tarea;
+import com.example.islas.calculadorappa.adapters.TareaAdapter;
 
 import java.util.ArrayList;
 

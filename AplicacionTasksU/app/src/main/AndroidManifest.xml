@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".tareasActivity"
+            android:name=".activities.tareasActivity"
             android:label="@string/title_activity_tareas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AgregarAsignatura" />
+        <activity android:name=".activities.AgregarAsignatura" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.islas.calculadorappa;
+package com.example.islas.calculadorappa.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
+
+import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Tarea;
 
 import java.util.ArrayList;
 

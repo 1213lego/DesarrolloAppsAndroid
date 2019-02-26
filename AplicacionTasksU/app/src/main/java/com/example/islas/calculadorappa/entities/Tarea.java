@@ -1,4 +1,4 @@
-package com.example.islas.calculadorappa;
+package com.example.islas.calculadorappa.entities;
 
 import java.io.Serializable;
 import java.util.Date;
