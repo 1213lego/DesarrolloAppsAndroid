@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabbedActivity extends AppCompatActivity {
 
@@ -101,7 +103,11 @@ public class TabbedActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static Fragment newInstance(int sectionNumber) {
+            if(sectionNumber==3)
+            {
+                return new Prueba();
+            }
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -115,15 +121,17 @@ public class TabbedActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_tabbed, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
             return rootView;
         }
     }
 
     /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * A {@link FragmentStatePagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter
+    {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);

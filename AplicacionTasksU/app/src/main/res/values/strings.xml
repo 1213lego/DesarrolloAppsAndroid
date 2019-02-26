@@ -22,4 +22,6 @@
     <string name="title_activity_agregar_tarea">agregarTareaActivity</string>
     <string name="hintNombreTarea">Nombre de la tarea</string>
     <string name="hintDescripcion">Descripción</string>
+    <string name="titleToolbarTareas">Tareas de </string>
+
 </resources>

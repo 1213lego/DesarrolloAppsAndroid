@@ -5,6 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public final static String RETORNO ="Accion";
     public final static String Valor="Valor";
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }

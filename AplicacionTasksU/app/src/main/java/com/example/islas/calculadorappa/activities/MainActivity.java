@@ -18,7 +18,7 @@ import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 public class MainActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGAR = 0;
-    public final static String TAREAS="Tareas";
+    public final static String ASIGNATURA ="Asignatura";
 
     private TextView txtPPA;
     private ServicioCalPPA servicioCalPPA;
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(Asignatura asignatura)
             {
                 Intent intent=new Intent(MainActivity.this, tareasActivity.class);
-                intent.putExtra(TAREAS,asignatura.getTareas());
+                intent.putExtra(ASIGNATURA,asignatura);
                 startActivity(intent);
             }
         });

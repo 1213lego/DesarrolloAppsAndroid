@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.islas.calculadorappa.R;
@@ -66,7 +67,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
         private TextView docente;
         private TextView creditos;
         private TextView nota;
-
+        private ProgressBar progressBar;
         public MateriaHolder(@NonNull View itemView)
         {
             super(itemView);
@@ -74,6 +75,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
             docente=itemView.findViewById(R.id.txtNDocente);
             creditos=itemView.findViewById(R.id.txtCreditos);
             nota=itemView.findViewById(R.id.txtNota);
+            progressBar=itemView.findViewById(R.id.progressBar);
 
             itemView.setOnClickListener(new View.OnClickListener()
             {

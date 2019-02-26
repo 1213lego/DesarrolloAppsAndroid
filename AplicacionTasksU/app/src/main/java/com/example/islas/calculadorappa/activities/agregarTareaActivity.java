@@ -12,7 +12,8 @@ import com.example.islas.calculadorappa.R;
 public class agregarTareaActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_tarea);
         Toolbar toolbar = findViewById(R.id.toolbar);

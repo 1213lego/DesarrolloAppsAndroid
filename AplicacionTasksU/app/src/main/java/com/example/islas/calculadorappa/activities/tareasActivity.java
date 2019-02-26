@@ -2,6 +2,7 @@ package com.example.islas.calculadorappa.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.entities.Tarea;
 import com.example.islas.calculadorappa.adapters.TareaAdapter;
 
@@ -19,32 +22,35 @@ import java.util.ArrayList;
 
 public class tareasActivity extends AppCompatActivity
 {
+    public final static int REQUEST_CODE_AGREGEGAR_TAREA = 1;
+    public final static String TAREA ="TAREA";
+
     private RecyclerView rv;
     private TareaAdapter ta;
-    private ArrayList<Tarea> tareas;
+    private Asignatura asignatura;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tareas);
+        FloatingActionButton fab = findViewById(R.id.fab);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
+        Intent intent=getIntent();
+        asignatura=(Asignatura) intent.getSerializableExtra(MainActivity.ASIGNATURA);
+        toolbar.setTitle(getString(R.string.titleToolbarTareas)+" "+asignatura.getNombreAsignatura());
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-
+                Intent intent=new Intent(tareasActivity.this,asignatura.getClass());
+                startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });
 
-        Intent intent=getIntent();
-        tareas=(ArrayList<Tarea>)intent.getSerializableExtra(MainActivity.TAREAS);
         inicializarRecyclerView();
     }
 
@@ -53,7 +59,7 @@ public class tareasActivity extends AppCompatActivity
         rv=findViewById(R.id.recyclerTareas);
         rv.setLayoutManager(new LinearLayoutManager(this));
         ta=new TareaAdapter();
-        ta.setTareas(tareas);
+        ta.setTareas(asignatura.getTareas());
         rv.setAdapter(ta);
         //funcionalidad que permite eliminar un elemento deslizandolo
         //da la funcionalidad de swipe and move a cada item del recycler view
@@ -84,4 +90,16 @@ public class tareasActivity extends AppCompatActivity
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE_AGREGEGAR_TAREA)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                //se obtiene la nueva tarea
+            }
+        }
+    }
 }

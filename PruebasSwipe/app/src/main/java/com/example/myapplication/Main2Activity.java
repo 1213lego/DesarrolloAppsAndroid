@@ -31,8 +31,10 @@ public class Main2Activity extends AppCompatActivity
             case MotionEvent.ACTION_DOWN: x1 = touchEvent.getX();
                 y1 = touchEvent.getY();
                 break;
+
             case MotionEvent.ACTION_UP: x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
+
                 if(x1 < x2)
                 {
                     Intent i = new Intent(Main2Activity.this, Main2Activity.class);
