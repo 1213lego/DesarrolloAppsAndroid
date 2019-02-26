@@ -17,7 +17,7 @@ import com.example.islas.calculadorappa.adapters.TareaAdapter;
 
 import java.util.ArrayList;
 
-public class tareasActivity extends AppCompatActivity
+public class TareasActivity extends AppCompatActivity
 {
     private RecyclerView rv;
     private TareaAdapter ta;
