@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Asignatura;
+import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 
 import java.util.ArrayList;
 
@@ -90,6 +91,14 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
 
                 }
             });
+            if(getAdapterPosition()!=RecyclerView.NO_POSITION)
+            {
+                progressBar.setProgress(ServicioCalPPA.SERVICIOPPA.progresoAsignatura(getAdapterPosition()));
+                nota.setText(ServicioCalPPA.SERVICIOPPA.darNotaAsignatura(getAdapterPosition())+"");
+
+            }
+
+
         }
     }
 }

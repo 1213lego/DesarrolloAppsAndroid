@@ -47,6 +47,7 @@ public class TareasActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent intent=new Intent(TareasActivity.this,AgregarTareaActivity.class);
+
                 startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });
