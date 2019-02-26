@@ -46,7 +46,7 @@ public class TareasActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent=new Intent(tareasActivity.this,asignatura.getClass());
+                Intent intent=new Intent(TareasActivity.this,asignatura.getClass());
                 startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });

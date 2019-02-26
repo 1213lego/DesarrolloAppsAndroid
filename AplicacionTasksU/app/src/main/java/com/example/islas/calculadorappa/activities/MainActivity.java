@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         txtPPA= findViewById(R.id.txtPPA);
-        servicioCalPPA=new ServicioCalPPA();
+        servicioCalPPA=ServicioCalPPA.SERVICIOPPA;
 
         inicializarRecyclerView();
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(Asignatura asignatura)
             {
-                Intent intent=new Intent(MainActivity.this, tareasActivity.class);
+                Intent intent=new Intent(MainActivity.this, TareasActivity.class);
                 intent.putExtra(ASIGNATURA,asignatura);
 
                 startActivity(intent);
@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Asignatura asignatura=(Asignatura) data.getSerializableExtra(AgregarAsignatura.NUEVA_MATERIA);
+                asignatura.setNotafinal(0.0);
                 servicioCalPPA.añadirAsignatura(asignatura);
                 ma.notifyDataSetChanged();
                 calculaPpa();
