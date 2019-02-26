@@ -72,9 +72,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(Asignatura asignatura)
             {
-                Intent intent=new Intent(MainActivity.this, tareasActivity.class);
+                Intent intent=new Intent(MainActivity.this, TareasActivity.class);
                 intent.putExtra(ASIGNATURA,asignatura);
-
                 startActivity(intent);
             }
         });
