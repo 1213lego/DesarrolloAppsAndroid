@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.agregarTareaActivity"
+    tools:context=".activities.AgregarTareaActivity"
     tools:showIn="@layout/activity_agregar_tarea">
 
     <EditText
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/vectorcuadrosagregar"
         android:ems="10"
@@ -26,11 +26,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtPorcentaje"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/vectorcuadrosagregar"
+        android:ems="10"
+        android:hint="@string/hintPorcentaje"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHora" />
+
+    <EditText
+        android:id="@+id/txtNota"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/vectorcuadrosagregar"
+        android:ems="10"
+        android:hint="@string/hintNota"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPorcentaje" />
+
+    <EditText
+        android:id="@+id/txtDescripcion"
         android:layout_width="wrap_content"
         android:layout_height="164dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/vectordescripcion"
         android:ems="10"
@@ -41,5 +71,84 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombreTarea" />
+
+    <EditText
+        android:id="@+id/txtFecha"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/vectorcuadrosagregar"
+        android:ems="10"
+        android:hint="@string/hintFechaEntrega"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+
+    <EditText
+        android:id="@+id/txtHora"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/vectorcuadrosagregar"
+        android:ems="10"
+        android:hint="@string/hintHoraEntrega"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFecha" />
+
+    <Button
+        android:id="@+id/btncalendar"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btncalendar"
+        app:layout_constraintStart_toEndOf="@+id/txtFecha"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+
+    <Button
+        android:id="@+id/btnclock"
+        android:layout_width="61dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btnclock"
+        app:layout_constraintStart_toEndOf="@+id/txtHora"
+        app:layout_constraintTop_toBottomOf="@+id/btncalendar" />
+
+    <TextView
+        android:id="@+id/txtpct"
+        android:layout_width="25dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:text="%"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txtPorcentaje"
+        app:layout_constraintTop_toBottomOf="@+id/btnclock" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="116dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btnguardar"
+        android:text="@string/guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNota" />
 
 </android.support.constraint.ConstraintLayout>

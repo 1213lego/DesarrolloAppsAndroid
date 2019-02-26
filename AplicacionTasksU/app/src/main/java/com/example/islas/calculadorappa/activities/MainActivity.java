@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity
             {
                 Intent intent=new Intent(MainActivity.this, tareasActivity.class);
                 intent.putExtra(ASIGNATURA,asignatura);
+
                 startActivity(intent);
             }
         });

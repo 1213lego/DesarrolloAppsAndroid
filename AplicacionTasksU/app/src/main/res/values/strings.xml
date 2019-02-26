@@ -23,5 +23,9 @@
     <string name="hintNombreTarea">Nombre de la tarea</string>
     <string name="hintDescripcion">Descripción</string>
     <string name="titleToolbarTareas">Tareas de </string>
-
+    <string name="hintFechaEntrega">Fecha de entrega</string>
+    <string name="hintHoraEntrega">Hora de entrega</string>
+    <string name="labPorcentajeCompletado">Has completado:</string>
+    <string name="hintPorcentaje">Porcentaje de la tarea</string>
+    <string name="hintNota">Nota</string>
 </resources>

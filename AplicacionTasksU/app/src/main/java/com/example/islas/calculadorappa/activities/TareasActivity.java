@@ -20,7 +20,7 @@ import com.example.islas.calculadorappa.adapters.TareaAdapter;
 
 import java.util.ArrayList;
 
-public class tareasActivity extends AppCompatActivity
+public class TareasActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGEGAR_TAREA = 1;
     public final static String TAREA ="TAREA";
