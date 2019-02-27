@@ -100,6 +100,7 @@ public class TareasActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 //se obtiene la nueva tarea
+
             }
         }
     }

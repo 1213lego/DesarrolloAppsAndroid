@@ -57,6 +57,7 @@ public class AgregarTareaActivity extends AppCompatActivity
     public void btnHora(View view)
     {
 
+
     }
     public void btnFecha(View view)
     {
@@ -73,7 +74,6 @@ public class AgregarTareaActivity extends AppCompatActivity
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         // Display Selected date in textbox
-
                         if (year < mYear)
                             view.updateDate(mYear,mMonth,mDay);
 
@@ -93,6 +93,7 @@ public class AgregarTareaActivity extends AppCompatActivity
     }
     public void btnGuardar(View view)
     {
+
 
     }
 
