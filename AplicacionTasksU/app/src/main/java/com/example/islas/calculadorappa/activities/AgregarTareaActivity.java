@@ -168,7 +168,8 @@ public class AgregarTareaActivity extends AppCompatActivity
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable s)
+            {
                 validarEditText(fecha);
             }
         });
