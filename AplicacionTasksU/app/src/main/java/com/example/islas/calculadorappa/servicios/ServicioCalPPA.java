@@ -88,14 +88,8 @@ public class ServicioCalPPA
     {
        asignaturas.get(posAsignatura).getTareas().add(tarea);
     }
-    public ArrayList<Tarea> getTareasAsignatura(Asignatura asignatura)
+    public void cambiarTareaAsignatura(int posAsignatura,int posTarea,Tarea tarea)
     {
-        return        asignatura.getTareas();
+        asignaturas.get(posAsignatura).getTareas().set(posTarea,tarea);
     }
-
-    public void eliminarTareaMateria(Asignatura asignatura, int i)
-    {
-        asignatura.getTareas().remove(i);
-    }
-
 }

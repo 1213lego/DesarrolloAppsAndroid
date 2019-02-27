@@ -20,7 +20,9 @@ import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 public class TareasActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGEGAR_TAREA = 1;
-    public final static String TAREAS ="Tareas";
+    public final static int REQUEST_CODE_EDITAR_TAREA = 5;
+    public final static String TAREA="Tarea";
+    public final static String POS_TAREA="Posicion tarea";
 
     private RecyclerView rv;
     private TareaAdapter ta;
@@ -46,6 +48,7 @@ public class TareasActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent intent=new Intent(TareasActivity.this,AgregarTareaActivity.class);
+                intent.putExtra(AgregarTareaActivity.ACCION,AgregarTareaActivity.GUARDAR);
                 startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });
@@ -64,9 +67,13 @@ public class TareasActivity extends AppCompatActivity
         ta.setOnClickListener(new TareaAdapter.OnItemClickListener()
         {
             @Override
-            public void onItemClick(Tarea tarea)
+            public void onItemClick(int posTarea)
             {
-                Toast.makeText(TareasActivity.this, asignatura.getTareas().size()+ " ", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(TareasActivity.this,AgregarTareaActivity.class);
+                intent.putExtra(POS_TAREA,posTarea);
+                intent.putExtra(TAREA,asignatura.getTareas().get(posTarea));
+                intent.putExtra(AgregarTareaActivity.ACCION,AgregarTareaActivity.EDITAR);
+                startActivityForResult(intent,REQUEST_CODE_EDITAR_TAREA);
             }
         });
     }
@@ -82,6 +89,17 @@ public class TareasActivity extends AppCompatActivity
                 Tarea tarea = (Tarea) data.getSerializableExtra(AgregarTareaActivity.NUEVA_TAREA);
                 asignatura.getTareas().add(tarea);
                 ServicioCalPPA.getInstance().agregarTarea(posAsignatura,tarea);
+                ta.notifyDataSetChanged();
+            }
+        }
+        else if(requestCode==REQUEST_CODE_EDITAR_TAREA)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                Tarea tarea = (Tarea) data.getSerializableExtra(AgregarTareaActivity.EDITAR);
+                int posTarea=data.getIntExtra(POS_TAREA,-1);
+                asignatura.getTareas().set(posTarea,tarea);
+                ServicioCalPPA.getInstance().cambiarTareaAsignatura(posAsignatura,posTarea,tarea);
                 ta.notifyDataSetChanged();
             }
         }
