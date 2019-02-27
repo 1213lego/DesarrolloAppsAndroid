@@ -35,7 +35,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
 
         tareaHolder.nombre.setText(tareas.get(i).getNombre());
         tareaHolder.descripcion.setText(tareas.get(i).getDescripcion());
-        //falta fecha
+        tareaHolder.fecha.setText(tareas.get(i).getFecha()+"");
         tareaHolder.porcentaje.setText(tareas.get(i).getPorcentaje()+"");
     }
     @Override
@@ -63,7 +63,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
     {
         private TextView nombre;
         private TextView descripcion;
-        private DatePicker fecha;
+        private TextView fecha;
         private TextView porcentaje;
 
         public TareaHolder(@NonNull View itemView)
@@ -71,7 +71,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
             super(itemView);
             nombre=itemView.findViewById(R.id.txtNTarea);
             descripcion=itemView.findViewById(R.id.txtDescripcion);
-            //fecha=itemView.findViewById(R.id.txtCreditos);
+            fecha=itemView.findViewById(R.id.txtFecha);
             porcentaje=itemView.findViewById(R.id.txtPorcentaje);
             itemView.setOnClickListener(new View.OnClickListener()
             {

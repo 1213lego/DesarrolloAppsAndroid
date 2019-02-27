@@ -1,6 +1,8 @@
 package com.example.islas.calculadorappa.activities;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -9,15 +11,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Tarea;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class AgregarTareaActivity extends AppCompatActivity
 {
-    private int mYear,mMonth,mDay;
+
+    public final static String NUEVA_TAREA= "NUEVA TAREA";
+    private int mYear,mMonth,mDay,mHora,mMinutos;
+
     private EditText nombre;
     private EditText descripcion;
     private EditText fecha;
@@ -31,7 +39,7 @@ public class AgregarTareaActivity extends AppCompatActivity
         setContentView(R.layout.activity_agregar_tarea);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        nombre=findViewById(R.id.txtNomAsignatura);
+        nombre=findViewById(R.id.txtNombreTarea);
         descripcion=findViewById(R.id.txtDescripcion);
         fecha=findViewById(R.id.txtFecha);
         porcentaje=findViewById(R.id.txtPorcentaje);
@@ -56,6 +64,19 @@ public class AgregarTareaActivity extends AppCompatActivity
 
     public void btnHora(View view)
     {
+        final Calendar c = Calendar.getInstance();
+        mHora= c.get(Calendar.HOUR);
+        mMinutos= c.get(Calendar.MINUTE);
+
+        TimePickerDialog tpd = new TimePickerDialog(AgregarTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+            {
+                hora.setText(hourOfDay+" : "+minute);
+            }
+        },mHora,mMinutos,false);
+        tpd.show();
+
 
 
     }
@@ -68,11 +89,13 @@ public class AgregarTareaActivity extends AppCompatActivity
 
         // Launch Date Picker Dialog
         DatePickerDialog dpd = new DatePickerDialog(AgregarTareaActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
+                new DatePickerDialog.OnDateSetListener()
+                {
 
                     @Override
                     public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
+                                          int monthOfYear, int dayOfMonth)
+                    {
                         // Display Selected date in textbox
                         if (year < mYear)
                             view.updateDate(mYear,mMonth,mDay);
@@ -93,8 +116,12 @@ public class AgregarTareaActivity extends AppCompatActivity
     }
     public void btnGuardar(View view)
     {
-
-
+        Date fechD = new Date(mYear,mMonth,mDay,mHora,mMinutos,0);
+        Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
+        Intent intent = new Intent();
+        intent.putExtra(NUEVA_TAREA, tarea);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
 }
