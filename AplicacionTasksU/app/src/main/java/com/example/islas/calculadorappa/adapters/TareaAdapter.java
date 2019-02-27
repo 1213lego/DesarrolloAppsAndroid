@@ -52,7 +52,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
 
     public interface OnItemClickListener
     {
-        public void onItemClick(Tarea tarea);
+        public void onItemClick(int posTarea);
     }
     public void setOnClickListener(OnItemClickListener listener)
     {
@@ -84,7 +84,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
                     int pos=getAdapterPosition();
                     if(listener!=null && pos!=RecyclerView.NO_POSITION)
                     {
-                        listener.onItemClick(tareas.get(pos));
+                        listener.onItemClick(pos);
                     }
                 }
             });
