@@ -7,9 +7,13 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -47,6 +51,7 @@ public class AgregarTareaActivity extends AppCompatActivity
         porcentaje=findViewById(R.id.txtPorcentaje);
         hora=findViewById(R.id.txtHora);
         nota=findViewById(R.id.txtNota);
+
         Intent intent=getIntent();
         Tarea tarea=(Tarea)intent.getSerializableExtra(TareasActivity.TAREA);
         accion=intent.getStringExtra(ACCION);
@@ -62,9 +67,211 @@ public class AgregarTareaActivity extends AppCompatActivity
             posTareaEdicion=intent.getIntExtra(TareasActivity.POS_TAREA,-1);
             hora.setText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + " : " + Calendar.getInstance().get(Calendar.MINUTE));
             fecha.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+ "/" + Calendar.getInstance().get(Calendar.MONTH) +"/"+ Calendar.getInstance().get(Calendar.YEAR));
+            nota.addTextChangedListener(new TextWatcher()
+            {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validarEditTextNota(nota);
+                }
+            });
+            nota.setOnFocusChangeListener(new View.OnFocusChangeListener()
+            {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus)
+                {
+                    if(!hasFocus)
+                    {
+                        validarEditTextNota(nota);
+                    }
+                }
+            });
+        }
+    }
+    public void inicialiarEditText()
+    {
+        nombre.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                validarEditText(nombre);
+            }
+        });
+        nombre.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditText(nombre);
+                }
+            }
+        });
+        descripcion.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                validarEditText(descripcion);
+            }
+        });
+        descripcion.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditText(descripcion);
+                }
+            }
+        });
+        fecha.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                validarEditText(fecha);
+            }
+        });
+        fecha.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditText(fecha);
+                }
+            }
+        });
+        hora.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                validarEditText(hora);
+            }
+        });
+        hora.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditText(hora);
+                }
+            }
+        });
+
+        porcentaje.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                validarEditText(porcentaje);
+            }
+        });
+        porcentaje.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditText(porcentaje);
+                }
+            }
+        });
+    }
+    public void validarEditTextNota(TextView textView)
+    {
+        if (TextUtils.isEmpty(textView.getText()))
+        {
+            textView.setError(getString(R.string.error_input));
+        }
+        else
+        {
+            double notaText=Double.parseDouble(textView.getText().toString());
+            if(notaText>=0.0 && notaText<=5.0)
+            {
+                textView.setError(null);
+            }
+            else
+            {
+                textView.setText(getString(R.string.validar_txt_nota));
+            }
         }
 
-
+    }
+    public void validarEditText(TextView textView)
+    {
+        if (TextUtils.isEmpty(textView.getText()))
+        {
+            textView.setError(getString(R.string.error_input));
+        }
+        else
+        {
+            textView.setError(null);
+        }
 
     }
     private void showTimePicker()
@@ -123,26 +330,51 @@ public class AgregarTareaActivity extends AppCompatActivity
     }
     public void btnGuardar(View view)
     {
-
+        validarEditText(nombre);
+        validarEditText(descripcion);
+        validarEditText(fecha);
+        validarEditText(hora);
+        validarEditText(porcentaje);
         if(accion.equals(EDITAR))
         {
-            Date fechD = Calendar.getInstance().getTime();
-            Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
-            tarea.setNota(Double.parseDouble(nota.getText().toString()));
-            Intent intent = new Intent();
-            intent.putExtra(EDITAR, tarea);
-            intent.putExtra(TareasActivity.POS_TAREA,posTareaEdicion);
-            setResult(RESULT_OK, intent);
-            finish();
+
+            if(nota.getError()!=null|| nombre.getError()!=null
+                    || descripcion.getError()!=null || porcentaje.getError()!=null
+            || fecha.getError()!=null || hora.getError()!=null)
+            {
+                return;
+            }
+            else
+            {
+                validarEditTextNota(nota);
+                Date fechD = Calendar.getInstance().getTime();
+                Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
+                tarea.setNota(Double.parseDouble(nota.getText().toString()));
+                Intent intent = new Intent();
+                intent.putExtra(EDITAR, tarea);
+                intent.putExtra(TareasActivity.POS_TAREA,posTareaEdicion);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+
         }
         else if(accion.equals(GUARDAR))
         {
-            Date fechD = Calendar.getInstance().getTime();
-            Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
-            Intent intent = new Intent();
-            intent.putExtra(NUEVA_TAREA, tarea);
-            setResult(RESULT_OK, intent);
-            finish();
+            if(nombre.getError()!=null
+                    || descripcion.getError()!=null || porcentaje.getError()!=null
+                    || fecha.getError()!=null || hora.getError()!=null)
+            {
+                return;
+            }
+            else
+            {
+                Date fechD = Calendar.getInstance().getTime();
+                Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
+                Intent intent = new Intent();
+                intent.putExtra(NUEVA_TAREA, tarea);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         }
 
     }
