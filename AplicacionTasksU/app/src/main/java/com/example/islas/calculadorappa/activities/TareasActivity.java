@@ -34,12 +34,13 @@ public class TareasActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        asignatura=(Asignatura) intent.getSerializableExtra(MainActivity.ASIGNATURA);
         setContentView(R.layout.activity_tareas);
         FloatingActionButton fab = findViewById(R.id.fab);
         progressBar=findViewById(R.id.progressBarTareas);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        Intent intent=getIntent();
-        asignatura=(Asignatura) intent.getSerializableExtra(MainActivity.ASIGNATURA);
+
         toolbar.setTitle(getString(R.string.titleToolbarTareas)+" "+asignatura.getNombreAsignatura());
         setSupportActionBar(toolbar);
         posAsignatura=intent.getIntExtra(MainActivity.POS_ASIGNATURA,-1);
