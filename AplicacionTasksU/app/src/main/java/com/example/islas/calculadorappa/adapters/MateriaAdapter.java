@@ -51,7 +51,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
 
     public interface OnItemClickListener
     {
-        void onItemClick(Asignatura asignatura);
+        void onItemClick(int posAsignatura);
     }
 
     public  void setOnItemClickListener(OnItemClickListener onItemClickListener)
@@ -86,15 +86,15 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
                     int pos=getAdapterPosition();
                     if(listener!=null && pos!=RecyclerView.NO_POSITION)
                     {
-                        listener.onItemClick(materias.get(pos));
+                        listener.onItemClick(pos);
                     }
 
                 }
             });
             if(getAdapterPosition()!=RecyclerView.NO_POSITION)
             {
-                progressBar.setProgress(ServicioCalPPA.SERVICIOPPA.progresoAsignatura(getAdapterPosition()));
-                nota.setText(ServicioCalPPA.SERVICIOPPA.darNotaAsignatura(getAdapterPosition())+"");
+                progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(getAdapterPosition()));
+                nota.setText(ServicioCalPPA.getInstance().darNotaAsignatura(getAdapterPosition())+"");
 
             }
 

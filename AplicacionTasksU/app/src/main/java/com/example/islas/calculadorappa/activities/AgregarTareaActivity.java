@@ -78,6 +78,7 @@ public class AgregarTareaActivity extends AppCompatActivity
         tpd.show();
 
 
+
     }
     public void btnFecha(View view)
     {
@@ -88,13 +89,14 @@ public class AgregarTareaActivity extends AppCompatActivity
 
         // Launch Date Picker Dialog
         DatePickerDialog dpd = new DatePickerDialog(AgregarTareaActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
+                new DatePickerDialog.OnDateSetListener()
+                {
 
                     @Override
                     public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
+                                          int monthOfYear, int dayOfMonth)
+                    {
                         // Display Selected date in textbox
-
                         if (year < mYear)
                             view.updateDate(mYear,mMonth,mDay);
 
@@ -114,19 +116,12 @@ public class AgregarTareaActivity extends AppCompatActivity
     }
     public void btnGuardar(View view)
     {
-
-
-            Date fechD = new Date(mYear,mMonth,mDay,mHora,mMinutos,0);
-
-            Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
-            Intent intent = new Intent();
-            intent.putExtra(NUEVA_TAREA, tarea);
-            setResult(RESULT_OK, intent);
-            finish();
-
-
-
-
+        Date fechD = new Date(mYear,mMonth,mDay,mHora,mMinutos,0);
+        Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
+        Intent intent = new Intent();
+        intent.putExtra(NUEVA_TAREA, tarea);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
 }

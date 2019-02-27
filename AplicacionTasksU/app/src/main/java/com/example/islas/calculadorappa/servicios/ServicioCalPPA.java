@@ -8,14 +8,23 @@ import java.util.ArrayList;
 
 public class ServicioCalPPA
 {
-    public final static ServicioCalPPA SERVICIOPPA = new ServicioCalPPA();
+
     private ArrayList<Asignatura> asignaturas;
     private double ppa;
-
+    private static ServicioCalPPA servicioCalPPA;
     private ServicioCalPPA()
     {
         this.asignaturas = new ArrayList<Asignatura>();
         this.ppa = 0.0;
+    }
+
+    public static ServicioCalPPA getInstance()
+    {
+        if(servicioCalPPA==null)
+        {
+            servicioCalPPA=new ServicioCalPPA();
+        }
+        return servicioCalPPA;
     }
 
     public double calcularPPA()
@@ -46,7 +55,6 @@ public class ServicioCalPPA
         int resultado = (int) (suma * 100) / 5;
     return resultado;
     }
-
     public double darNotaAsignatura(int pos)
 
     {
@@ -76,10 +84,9 @@ public class ServicioCalPPA
         asignaturas.remove(adapterPosition);
     }
 
-    public void añadirTarea(Asignatura asignatura, Tarea tarea)
+    public void agregarTarea(int posAsignatura, Tarea tarea)
     {
-       asignatura.getTareas().add(tarea);
-
+       asignaturas.get(posAsignatura).getTareas().add(tarea);
     }
     public ArrayList<Tarea> getTareasAsignatura(Asignatura asignatura)
     {

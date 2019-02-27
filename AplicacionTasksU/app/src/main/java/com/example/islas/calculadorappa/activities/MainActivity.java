@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.adapters.MateriaAdapter;
@@ -18,7 +19,9 @@ import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 public class MainActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGAR = 0;
+    public final static int REQUEST_CODE_TAREAS=3;
     public final static String ASIGNATURA ="Asignatura";
+    public final static String POS_ASIGNATURA ="Posicion";
 
     private TextView txtPPA;
     private ServicioCalPPA servicioCalPPA;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         txtPPA= findViewById(R.id.txtPPA);
-        servicioCalPPA=ServicioCalPPA.SERVICIOPPA;
+        servicioCalPPA=ServicioCalPPA.getInstance();
 
         inicializarRecyclerView();
     }
@@ -70,10 +73,11 @@ public class MainActivity extends AppCompatActivity
         ma.setOnItemClickListener(new MateriaAdapter.OnItemClickListener()
         {
             @Override
-            public void onItemClick(Asignatura asignatura)
+            public void onItemClick(int posAsignatura)
             {
                 Intent intent=new Intent(MainActivity.this, TareasActivity.class);
-                intent.putExtra(ASIGNATURA,asignatura);
+                intent.putExtra(ASIGNATURA,ServicioCalPPA.getInstance().getAsignaturas().get(posAsignatura));
+                intent.putExtra(POS_ASIGNATURA,posAsignatura);
                 startActivity(intent);
             }
         });
