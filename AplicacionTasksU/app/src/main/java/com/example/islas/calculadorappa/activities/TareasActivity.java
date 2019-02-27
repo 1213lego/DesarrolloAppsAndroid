@@ -55,7 +55,7 @@ public class TareasActivity extends AppCompatActivity
                 startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });
-
+        setProgressBar();
         inicializarRecyclerView();
     }
 
@@ -79,6 +79,11 @@ public class TareasActivity extends AppCompatActivity
                 startActivityForResult(intent,REQUEST_CODE_EDITAR_TAREA);
             }
         });
+    }
+
+    public void setProgressBar()
+    {
+        progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura));
     }
 
     @Override
@@ -107,7 +112,7 @@ public class TareasActivity extends AppCompatActivity
                 ta.notifyDataSetChanged();
             }
         }
-        progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura));
+        setProgressBar();
 
     }
 }
