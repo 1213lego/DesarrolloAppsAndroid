@@ -100,20 +100,17 @@
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="178dp"
-        android:layout_height="36dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="368dp"
         android:background="@drawable/btnguardar"
         android:onClick="agregarAsignatura"
         android:text="@string/guardar"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNumCreditos"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNumCreditos" />
 
 </android.support.constraint.ConstraintLayout>

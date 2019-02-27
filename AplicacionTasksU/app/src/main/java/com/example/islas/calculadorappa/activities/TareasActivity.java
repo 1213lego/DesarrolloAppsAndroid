@@ -84,6 +84,7 @@ public class TareasActivity extends AppCompatActivity
     public void setProgressBar()
     {
         progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura));
+        ServicioCalPPA.getInstance().setNotaAsignatura(posAsignatura,ServicioCalPPA.getInstance().darNotaAsignatura(posAsignatura));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.islas.calculadorappa.adapters;
 
+import android.content.SyncStatusObserver;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,7 +37,9 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
         materiaHolder.docente.setText(materias.get(i).getNombreDocente());
         materiaHolder.creditos.setText(materias.get(i).getCreditos()+"");
         materiaHolder.nombre.setText(materias.get(i).getNombreAsignatura());
-        materiaHolder.nota.setText(materias.get(i).getNotafinal()+"");
+        materiaHolder.nota.setText(ServicioCalPPA.getInstance().darNotaAsignatura(i)+"");
+        materiaHolder.progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(i));
+
     }
     @Override
     public int getItemCount()
@@ -93,11 +96,10 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
             });
             if(getAdapterPosition()!=RecyclerView.NO_POSITION)
             {
-                progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(getAdapterPosition()));
-                nota.setText(ServicioCalPPA.getInstance().darNotaAsignatura(getAdapterPosition())+"");
+
+                System.out.println("algo paso");
             }
-
-
         }
+
     }
 }

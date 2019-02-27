@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
         // The activity has become visible (it is now "resumed").
-        inicializarRecyclerView();
+        ma.notifyDataSetChanged();
+
+        calculaPpa();
     }
 
 }
