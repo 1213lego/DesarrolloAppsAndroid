@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Asignatura asignatura=(Asignatura) data.getSerializableExtra(AgregarAsignatura.NUEVA_MATERIA);
-                asignatura.setNotafinal(0.0);
+                //asignatura.setNotafinal(ServicioCalPPA.getInstance().darNotaAsignatura());
                 servicioCalPPA.añadirAsignatura(asignatura);
                 ma.notifyDataSetChanged();
                 calculaPpa();
@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
         // The activity has become visible (it is now "resumed").
-        inicializarRecyclerView();
+        ma.notifyDataSetChanged();
+
+        calculaPpa();
     }
 
 }

@@ -18,7 +18,6 @@ public class AgregarAsignatura extends AppCompatActivity
     public final static String NUEVA_MATERIA= "NUEVA MATERIA";
     private EditText nombreAsignatura;
     private EditText nombreDocente;
-    private EditText nota;
     private EditText creditos;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,7 +30,6 @@ public class AgregarAsignatura extends AppCompatActivity
     {
         nombreAsignatura=findViewById(R.id.txtNomAsignatura);
         nombreDocente=findViewById(R.id.txtNomDocente);
-        nota=findViewById(R.id.txtNotFInal);
         creditos=findViewById(R.id.txtNumCreditos);
 
         nombreAsignatura.addTextChangedListener(new TextWatcher()
@@ -124,35 +122,8 @@ public class AgregarAsignatura extends AppCompatActivity
             }
         });
 
-        nota.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
 
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
 
-            }
-            @Override
-            public void afterTextChanged(Editable s)
-            {
-                validarEditText(nota);
-            }
-        });
-        nota.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus)
-            {
-                if(!hasFocus)
-                {
-                    validarEditText(nota);
-                }
-            }
-        });
 
 
     }
@@ -175,17 +146,16 @@ public class AgregarAsignatura extends AppCompatActivity
         validarEditText(nombreAsignatura);
         validarEditText(nombreDocente);
         validarEditText(creditos);
-        validarEditText(nota);
+
         if(nombreAsignatura.getError()!=null|| nombreDocente.getError()!=null
-                || creditos.getError()!=null || nota.getError()!=null)
+                || creditos.getError()!=null )
         {
             return;
         }
         else
         {
             Asignatura asignatura= new Asignatura(nombreAsignatura.getText().toString(),
-                    nombreDocente.getText().toString(),Integer.parseInt(creditos.getText().toString()),
-                    Double.parseDouble(nota.getText().toString()));
+                    nombreDocente.getText().toString(),Integer.parseInt(creditos.getText().toString()));
             Intent intent = new Intent();
             intent.putExtra(NUEVA_MATERIA,asignatura);
             setResult(RESULT_OK,intent);

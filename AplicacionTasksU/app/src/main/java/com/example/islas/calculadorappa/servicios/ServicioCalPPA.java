@@ -43,26 +43,31 @@ public class ServicioCalPPA
 
     }
 
+    public void setNotaAsignatura(int pos,double notafinal)
+    {
+        asignaturas.get(pos).setNotafinal(notafinal);
+    }
+
     public int progresoAsignatura(int pos)
     {
         ArrayList<Tarea> tareas = asignaturas.get(pos).getTareas();
-        int suma = 0;
+        double suma = 0.0;
         for(int i=0 ; i<tareas.size();i++)
         {
-           suma+= (int) tareas.get(i).getPorcentaje();
+           suma+= (int) tareas.get(i).getNota()*(tareas.get(i).getPorcentaje()/100);
 
         }
-
-    return suma;
+        int resultado = (int) (suma*100)/5;
+    return resultado;
     }
     public double darNotaAsignatura(int pos)
 
     {
         ArrayList<Tarea> tareas = asignaturas.get(pos).getTareas();
-        double suma = 0;
+        double suma = 0.0;
         for(int i=0 ; i<tareas.size();i++)
         {
-            suma= tareas.get(i).getNota() * tareas.get(i).getPorcentaje();
+            suma+= tareas.get(i).getNota() * (tareas.get(i).getPorcentaje()/100);
 
         }
         return suma;

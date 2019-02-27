@@ -46,5 +46,4 @@
         tools:listitem="@layout/tarea_item" />
 
 
-
 </android.support.constraint.ConstraintLayout>
