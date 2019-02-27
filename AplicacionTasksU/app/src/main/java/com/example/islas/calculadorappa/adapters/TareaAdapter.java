@@ -37,6 +37,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
         tareaHolder.descripcion.setText(tareas.get(i).getDescripcion());
         tareaHolder.fecha.setText(tareas.get(i).getFecha()+"");
         tareaHolder.porcentaje.setText(tareas.get(i).getPorcentaje()+"");
+        tareaHolder.nota.setText(tareas.get(i).getNota()+"");
     }
     @Override
     public int getItemCount()
@@ -65,6 +66,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
         private TextView descripcion;
         private TextView fecha;
         private TextView porcentaje;
+        private TextView nota;
 
         public TareaHolder(@NonNull View itemView)
         {
@@ -73,6 +75,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
             descripcion=itemView.findViewById(R.id.txtDescripcion);
             fecha=itemView.findViewById(R.id.txtFecha);
             porcentaje=itemView.findViewById(R.id.txtPorcentaje);
+            nota=itemView.findViewById(R.id.txtCVTNota);
             itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
