@@ -103,9 +103,11 @@ public class TareasActivity extends AppCompatActivity
                 int posTarea=data.getIntExtra(POS_TAREA,-1);
                 asignatura.getTareas().set(posTarea,tarea);
                 ServicioCalPPA.getInstance().cambiarTareaAsignatura(posAsignatura,posTarea,tarea);
+
                 ta.notifyDataSetChanged();
             }
         }
         progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura));
+
     }
 }
