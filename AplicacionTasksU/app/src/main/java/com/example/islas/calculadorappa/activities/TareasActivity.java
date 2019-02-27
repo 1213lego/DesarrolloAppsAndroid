@@ -33,12 +33,13 @@ public class TareasActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        asignatura=(Asignatura) intent.getSerializableExtra(MainActivity.ASIGNATURA);
         setContentView(R.layout.activity_tareas);
         FloatingActionButton fab = findViewById(R.id.fab);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        Intent intent=getIntent();
-        asignatura=(Asignatura) intent.getSerializableExtra(MainActivity.ASIGNATURA);
+
         toolbar.setTitle(getString(R.string.titleToolbarTareas)+" "+asignatura.getNombreAsignatura());
         setSupportActionBar(toolbar);
 
@@ -101,8 +102,8 @@ public class TareasActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Tarea tarea = (Tarea) data.getSerializableExtra(AgregarTareaActivity.NUEVA_TAREA);
-                asignatura.agregarTarea(tarea);
-                //ServicioCalPPA.SERVICIOPPA.añadirTarea(asignatura,tarea);
+                //asignatura.agregarTarea(tarea);
+                ServicioCalPPA.SERVICIOPPA.añadirTarea(asignatura,tarea);
                 ta.notifyDataSetChanged();
                 //se obtiene la nueva tarea
             }
