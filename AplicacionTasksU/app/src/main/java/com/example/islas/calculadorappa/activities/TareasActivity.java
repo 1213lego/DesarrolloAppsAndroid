@@ -17,6 +17,7 @@ import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.entities.Tarea;
 import com.example.islas.calculadorappa.adapters.TareaAdapter;
+import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 
 import java.util.ArrayList;
 
@@ -99,6 +100,10 @@ public class TareasActivity extends AppCompatActivity
         {
             if(resultCode==RESULT_OK)
             {
+                Tarea tarea = (Tarea) data.getSerializableExtra(AgregarTareaActivity.NUEVA_TAREA);
+                asignatura.agregarTarea(tarea);
+                //ServicioCalPPA.SERVICIOPPA.añadirTarea(asignatura,tarea);
+                ta.notifyDataSetChanged();
                 //se obtiene la nueva tarea
             }
         }

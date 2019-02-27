@@ -70,7 +70,7 @@ public class Asignatura implements Serializable
     public void setTareas(ArrayList<Tarea> tareas) {
         this.tareas = tareas;
     }
-    private void agregarTarea(Tarea tarea)
+    public void agregarTarea(Tarea tarea)
     {
         tareas.add(tarea);
     }

@@ -75,4 +75,20 @@ public class ServicioCalPPA
     {
         asignaturas.remove(adapterPosition);
     }
+
+    public void añadirTarea(Asignatura asignatura, Tarea tarea)
+    {
+       asignatura.getTareas().add(tarea);
+
+    }
+    public ArrayList<Tarea> getTareasAsignatura(Asignatura asignatura)
+    {
+        return        asignatura.getTareas();
+    }
+
+    public void eliminarTareaMateria(Asignatura asignatura, int i)
+    {
+        asignatura.getTareas().remove(i);
+    }
+
 }
