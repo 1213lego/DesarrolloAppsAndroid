@@ -95,7 +95,6 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
             {
                 progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(getAdapterPosition()));
                 nota.setText(ServicioCalPPA.getInstance().darNotaAsignatura(getAdapterPosition())+"");
-
             }
 
 

@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity
 
         txtPPA= findViewById(R.id.txtPPA);
         servicioCalPPA=ServicioCalPPA.getInstance();
-
         inicializarRecyclerView();
     }
     private void inicializarRecyclerView()
@@ -114,4 +113,14 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        // The activity has become visible (it is now "resumed").
+        inicializarRecyclerView();
+    }
+
 }
+
