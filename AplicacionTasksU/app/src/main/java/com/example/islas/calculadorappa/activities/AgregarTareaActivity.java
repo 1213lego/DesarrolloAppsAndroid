@@ -60,9 +60,8 @@ public class AgregarTareaActivity extends AppCompatActivity
             nota.setVisibility(View.VISIBLE);
             nota.setText(tarea.getNota()+"");
             posTareaEdicion=intent.getIntExtra(TareasActivity.POS_TAREA,-1);
-            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
-            hora.setText(date.getHours() + " : " + date.getMinutes());
-            fecha.setText(formateador.format(date));
+            hora.setText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + " : " + Calendar.getInstance().get(Calendar.MINUTE));
+            fecha.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+ "/" + Calendar.getInstance().get(Calendar.MONTH) +"/"+ Calendar.getInstance().get(Calendar.YEAR));
         }
 
 
@@ -127,7 +126,7 @@ public class AgregarTareaActivity extends AppCompatActivity
 
         if(accion.equals(EDITAR))
         {
-            Date fechD = new Date(mYear,mMonth,mDay,mHora,mMinutos,0);
+            Date fechD = Calendar.getInstance().getTime();
             Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
             tarea.setNota(Double.parseDouble(nota.getText().toString()));
             Intent intent = new Intent();
@@ -138,7 +137,7 @@ public class AgregarTareaActivity extends AppCompatActivity
         }
         else if(accion.equals(GUARDAR))
         {
-            Date fechD = new Date(mYear,mMonth,mDay,mHora,mMinutos,0);
+            Date fechD = Calendar.getInstance().getTime();
             Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
             Intent intent = new Intent();
             intent.putExtra(NUEVA_TAREA, tarea);
