@@ -258,7 +258,7 @@ public class AgregarTareaActivity extends AppCompatActivity
             }
             else
             {
-                textView.setText(getString(R.string.validar_txt_nota));
+                textView.setError(getString(R.string.validar_txt_nota));
             }
         }
 
