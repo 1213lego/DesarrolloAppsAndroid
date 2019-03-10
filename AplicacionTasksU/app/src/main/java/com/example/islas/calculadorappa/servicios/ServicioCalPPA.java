@@ -11,7 +11,7 @@ public class ServicioCalPPA
 
     private ArrayList<Asignatura> asignaturas;
     private double ppa;
-    private static ServicioCalPPA servicioCalPPA;
+    private static ServicioCalPPA instance;
     private ServicioCalPPA()
     {
         this.asignaturas = new ArrayList<Asignatura>();
@@ -20,11 +20,11 @@ public class ServicioCalPPA
 
     public static ServicioCalPPA getInstance()
     {
-        if(servicioCalPPA==null)
+        if(instance ==null)
         {
-            servicioCalPPA=new ServicioCalPPA();
+            instance =new ServicioCalPPA();
         }
-        return servicioCalPPA;
+        return instance;
     }
 
     public double calcularPPA()
@@ -89,12 +89,4 @@ public class ServicioCalPPA
         asignaturas.remove(adapterPosition);
     }
 
-    public void agregarTarea(int posAsignatura, Tarea tarea)
-    {
-       asignaturas.get(posAsignatura).getTareas().add(tarea);
-    }
-    public void cambiarTareaAsignatura(int posAsignatura,int posTarea,Tarea tarea)
-    {
-        asignaturas.get(posAsignatura).getTareas().set(posTarea,tarea);
-    }
 }

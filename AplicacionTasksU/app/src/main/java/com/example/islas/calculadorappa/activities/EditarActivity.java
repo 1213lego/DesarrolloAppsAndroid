@@ -34,6 +34,8 @@ public class EditarActivity extends AppCompatActivity
     private EditText hora;
     private EditText porcentaje;
     private EditText nota;
+    private double porcentajeActual;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -48,9 +50,10 @@ public class EditarActivity extends AppCompatActivity
         porcentaje=findViewById(R.id.txtPorcentaje);
         hora=findViewById(R.id.txtHora);
         nota=findViewById(R.id.txtNota);
-
         Intent intent=getIntent();
+        porcentajeActual=intent.getDoubleExtra(TareasActivity.PORCENTAJE_ACTUAL,-1);
         Tarea tarea=(Tarea)intent.getSerializableExtra(TareasActivity.TAREA);
+        porcentajeActual=porcentajeActual-tarea.getPorcentaje();
         nombre.setText(tarea.getNombre());
         descripcion.setText(tarea.getDescripcion());
         porcentaje.setText(tarea.getPorcentaje()+"");
@@ -61,6 +64,7 @@ public class EditarActivity extends AppCompatActivity
         posTareaEdicion=intent.getIntExtra(TareasActivity.POS_TAREA,-1);
         hora.setText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + " : " + Calendar.getInstance().get(Calendar.MINUTE));
         fecha.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+ "/" + Calendar.getInstance().get(Calendar.MONTH) +"/"+ Calendar.getInstance().get(Calendar.YEAR));
+        inicialiarEditText();
     }
     public void inicialiarEditText()
     {
@@ -193,7 +197,7 @@ public class EditarActivity extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s)
             {
-                validarEditText(porcentaje);
+                validarEditTexPorcentaje(porcentaje);
             }
         });
         porcentaje.setOnFocusChangeListener(new View.OnFocusChangeListener()
@@ -203,7 +207,7 @@ public class EditarActivity extends AppCompatActivity
             {
                 if(!hasFocus)
                 {
-                    validarEditText(porcentaje);
+                    validarEditTexPorcentaje(porcentaje);
                 }
             }
         });
@@ -256,6 +260,26 @@ public class EditarActivity extends AppCompatActivity
             else
             {
                 textView.setError(getString(R.string.validar_txt_nota));
+            }
+        }
+
+    }
+    public void validarEditTexPorcentaje(TextView textView)
+    {
+        if (TextUtils.isEmpty(textView.getText()))
+        {
+            textView.setError(getString(R.string.error_input));
+        }
+        else
+        {
+            double pocentajeNuevo=Double.parseDouble(textView.getText().toString());
+            if((pocentajeNuevo+porcentajeActual)<=100.0)
+            {
+                textView.setError(null);
+            }
+            else
+            {
+                textView.setError(getString(R.string.validaciont_edit_text_porcentaje)+ " "+porcentajeActual);
             }
         }
 
@@ -332,7 +356,7 @@ public class EditarActivity extends AppCompatActivity
         validarEditText(descripcion);
         validarEditText(fecha);
         validarEditText(hora);
-        validarEditText(porcentaje);
+        validarEditTexPorcentaje(porcentaje);
         validarEditTextNota(nota);
         if(nota.getError()!=null|| nombre.getError()!=null
                 || descripcion.getError()!=null || porcentaje.getError()!=null

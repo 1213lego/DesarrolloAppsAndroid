@@ -20,7 +20,6 @@ import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 public class MainActivity extends AppCompatActivity
 {
     public final static int REQUEST_CODE_AGREGAR = 0;
-    public final static int REQUEST_CODE_TAREAS=3;
     public final static String ASIGNATURA ="Asignatura";
     public final static String POS_ASIGNATURA ="Posicion";
 
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(int posAsignatura)
             {
                 Intent intent=new Intent(MainActivity.this, TareasActivity.class);
-                intent.putExtra(ASIGNATURA,ServicioCalPPA.getInstance().getAsignaturas().get(posAsignatura));
                 intent.putExtra(POS_ASIGNATURA,posAsignatura);
                 startActivity(intent);
             }
@@ -103,7 +101,6 @@ public class MainActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Asignatura asignatura=(Asignatura) data.getSerializableExtra(AgregarAsignatura.NUEVA_MATERIA);
-                //asignatura.setNotafinal(ServicioCalPPA.getInstance().darNotaAsignatura());
                 servicioCalPPA.añadirAsignatura(asignatura);
                 ma.notifyDataSetChanged();
                 calculaPpa();
@@ -114,7 +111,6 @@ public class MainActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
-
         ma.notifyDataSetChanged();
         calculaPpa();
     }

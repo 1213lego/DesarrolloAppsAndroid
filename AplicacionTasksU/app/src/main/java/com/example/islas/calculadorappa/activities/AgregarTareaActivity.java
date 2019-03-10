@@ -27,14 +27,13 @@ public class AgregarTareaActivity extends AppCompatActivity
     public final static String NUEVA_TAREA= "NUEVA TAREA";
     private int mYear,mMonth,mDay,mHora,mMinutos;
 
-    private String accion;
-    private int posTareaEdicion;
     private EditText nombre;
     private EditText descripcion;
     private EditText fecha;
     private EditText hora;
     private EditText porcentaje;
-    private EditText nota;
+    private double porcentajeActual;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,7 +46,9 @@ public class AgregarTareaActivity extends AppCompatActivity
         fecha=findViewById(R.id.txtFecha);
         porcentaje=findViewById(R.id.txtPorcentaje);
         hora=findViewById(R.id.txtHora);
-        nota=findViewById(R.id.txtNota);
+        inicialiarEditText();
+        porcentajeActual=getIntent().getDoubleExtra(TareasActivity.PORCENTAJE_ACTUAL,-1);
+
     }
     public void inicialiarEditText()
     {
@@ -180,7 +181,7 @@ public class AgregarTareaActivity extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s)
             {
-                validarEditText(porcentaje);
+                validarEditTexPorcentaje(porcentaje);
             }
         });
         porcentaje.setOnFocusChangeListener(new View.OnFocusChangeListener()
@@ -190,12 +191,12 @@ public class AgregarTareaActivity extends AppCompatActivity
             {
                 if(!hasFocus)
                 {
-                    validarEditText(porcentaje);
+                    validarEditTexPorcentaje(porcentaje);
                 }
             }
         });
     }
-    public void validarEditTextNota(TextView textView)
+    public void validarEditTexPorcentaje(TextView textView)
     {
         if (TextUtils.isEmpty(textView.getText()))
         {
@@ -203,14 +204,14 @@ public class AgregarTareaActivity extends AppCompatActivity
         }
         else
         {
-            double notaText=Double.parseDouble(textView.getText().toString());
-            if(notaText>=0.0 && notaText<=5.0)
+            double pocentajeNuevo=Double.parseDouble(textView.getText().toString());
+            if((pocentajeNuevo+porcentajeActual)<=100.0)
             {
                 textView.setError(null);
             }
             else
             {
-                textView.setError(getString(R.string.validar_txt_nota));
+                textView.setError(getString(R.string.validaciont_edit_text_porcentaje)+ " " +porcentajeActual);
             }
         }
 
@@ -287,7 +288,7 @@ public class AgregarTareaActivity extends AppCompatActivity
         validarEditText(descripcion);
         validarEditText(fecha);
         validarEditText(hora);
-        validarEditText(porcentaje);
+        validarEditTexPorcentaje(porcentaje);
 
         if(nombre.getError()!=null
                 || descripcion.getError()!=null || porcentaje.getError()!=null

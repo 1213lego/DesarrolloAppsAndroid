@@ -11,7 +11,6 @@ public class Tarea implements Serializable
     private Date fecha;
     private double porcentaje;
     private double nota;
-
     public Tarea(String nombre, String descripcion, Date fecha, double porcentaje)
     {
         this.nombre = nombre;
@@ -25,11 +24,6 @@ public class Tarea implements Serializable
         return nombre;
     }
 
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public double getNota()
     {
         return nota;
@@ -41,26 +35,10 @@ public class Tarea implements Serializable
     public double getPorcentaje() {
         return porcentaje;
     }
-
-    public void setPorcentaje(double porcentaje) {
-        this.porcentaje = porcentaje;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public Date getFecha() {
         return fecha;
     }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-
 }

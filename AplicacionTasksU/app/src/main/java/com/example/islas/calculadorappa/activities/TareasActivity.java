@@ -24,6 +24,7 @@ public class TareasActivity extends AppCompatActivity
     public final static int REQUEST_CODE_EDITAR_TAREA = 5;
     public final static String TAREA="Tarea";
     public final static String POS_TAREA="Posicion tarea";
+    public final static String PORCENTAJE_ACTUAL="Porcentaje Actual";
 
     private RecyclerView rv;
     private TareaAdapter ta;
@@ -34,16 +35,16 @@ public class TareasActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Intent intent=getIntent();
-        asignatura=(Asignatura) intent.getSerializableExtra(MainActivity.ASIGNATURA);
         setContentView(R.layout.activity_tareas);
+        Intent intent=getIntent();
+        posAsignatura=intent.getIntExtra(MainActivity.POS_ASIGNATURA,-1);
+        asignatura=ServicioCalPPA.getInstance().getAsignaturas().get(posAsignatura);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         progressBar=findViewById(R.id.progressBarTareas);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
         toolbar.setTitle(getString(R.string.titleToolbarTareas)+" "+asignatura.getNombreAsignatura());
         setSupportActionBar(toolbar);
-        posAsignatura=intent.getIntExtra(MainActivity.POS_ASIGNATURA,-1);
 
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -51,6 +52,7 @@ public class TareasActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent intent=new Intent(TareasActivity.this,AgregarTareaActivity.class);
+                intent.putExtra(PORCENTAJE_ACTUAL,asignatura.getPorcentajeActual());
                 startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });
@@ -74,6 +76,7 @@ public class TareasActivity extends AppCompatActivity
                 Intent intent= new Intent(TareasActivity.this,EditarActivity.class);
                 intent.putExtra(POS_TAREA,posTarea);
                 intent.putExtra(TAREA,asignatura.getTareas().get(posTarea));
+                intent.putExtra(PORCENTAJE_ACTUAL,asignatura.getPorcentajeActual());
                 startActivityForResult(intent,REQUEST_CODE_EDITAR_TAREA);
             }
         });
@@ -94,8 +97,7 @@ public class TareasActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Tarea tarea = (Tarea) data.getSerializableExtra(AgregarTareaActivity.NUEVA_TAREA);
-                asignatura.getTareas().add(tarea);
-                ServicioCalPPA.getInstance().agregarTarea(posAsignatura,tarea);
+                asignatura.agregarTarea(tarea);
                 ta.notifyDataSetChanged();
             }
         }
@@ -106,11 +108,9 @@ public class TareasActivity extends AppCompatActivity
                 Tarea tarea = (Tarea) data.getSerializableExtra(EditarActivity.TAREA_EDITADA);
                 int posTarea=data.getIntExtra(POS_TAREA,-1);
                 asignatura.getTareas().set(posTarea,tarea);
-                ServicioCalPPA.getInstance().cambiarTareaAsignatura(posAsignatura,posTarea,tarea);
                 ta.notifyDataSetChanged();
             }
         }
         setProgressBar();
-
     }
 }

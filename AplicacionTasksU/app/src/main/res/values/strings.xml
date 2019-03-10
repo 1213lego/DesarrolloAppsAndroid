@@ -30,5 +30,7 @@
     <string name="hintNota">Nota</string>
     <string name="validar_txt_nota">La nota debe ser mayor a 0 y menor a 5</string>
     <string name="title_activity_editar_tarea">Edita tu tarea</string>
+    <string name="validaciont_edit_text_porcentaje">esta excediendo el 100%, actualmente hay </string>
+
 
 </resources>
