@@ -51,7 +51,6 @@ public class TareasActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent intent=new Intent(TareasActivity.this,AgregarTareaActivity.class);
-                intent.putExtra(AgregarTareaActivity.ACCION,AgregarTareaActivity.GUARDAR);
                 startActivityForResult(intent,REQUEST_CODE_AGREGEGAR_TAREA);
             }
         });
@@ -72,10 +71,9 @@ public class TareasActivity extends AppCompatActivity
             @Override
             public void onItemClick(int posTarea)
             {
-                Intent intent= new Intent(TareasActivity.this,AgregarTareaActivity.class);
+                Intent intent= new Intent(TareasActivity.this,EditarActivity.class);
                 intent.putExtra(POS_TAREA,posTarea);
                 intent.putExtra(TAREA,asignatura.getTareas().get(posTarea));
-                intent.putExtra(AgregarTareaActivity.ACCION,AgregarTareaActivity.EDITAR);
                 startActivityForResult(intent,REQUEST_CODE_EDITAR_TAREA);
             }
         });
@@ -105,11 +103,10 @@ public class TareasActivity extends AppCompatActivity
         {
             if(resultCode==RESULT_OK)
             {
-                Tarea tarea = (Tarea) data.getSerializableExtra(AgregarTareaActivity.EDITAR);
+                Tarea tarea = (Tarea) data.getSerializableExtra(EditarActivity.TAREA_EDITADA);
                 int posTarea=data.getIntExtra(POS_TAREA,-1);
                 asignatura.getTareas().set(posTarea,tarea);
                 ServicioCalPPA.getInstance().cambiarTareaAsignatura(posAsignatura,posTarea,tarea);
-
                 ta.notifyDataSetChanged();
             }
         }

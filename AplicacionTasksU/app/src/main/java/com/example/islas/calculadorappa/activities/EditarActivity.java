@@ -3,9 +3,8 @@ package com.example.islas.calculadorappa.activities;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -15,18 +14,18 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Tarea;
+
 import java.util.Calendar;
 import java.util.Date;
-public class AgregarTareaActivity extends AppCompatActivity
+
+public class EditarActivity extends AppCompatActivity
 {
 
-    public final static String NUEVA_TAREA= "NUEVA TAREA";
+    public final static String TAREA_EDITADA= "Edicion";
     private int mYear,mMonth,mDay,mHora,mMinutos;
-
     private String accion;
     private int posTareaEdicion;
     private EditText nombre;
@@ -39,8 +38,9 @@ public class AgregarTareaActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar_tarea);
+        setContentView(R.layout.activity_editar);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_editar_tarea);
         setSupportActionBar(toolbar);
         nombre=findViewById(R.id.txtNombreTarea);
         descripcion=findViewById(R.id.txtDescripcion);
@@ -48,6 +48,19 @@ public class AgregarTareaActivity extends AppCompatActivity
         porcentaje=findViewById(R.id.txtPorcentaje);
         hora=findViewById(R.id.txtHora);
         nota=findViewById(R.id.txtNota);
+
+        Intent intent=getIntent();
+        Tarea tarea=(Tarea)intent.getSerializableExtra(TareasActivity.TAREA);
+        nombre.setText(tarea.getNombre());
+        descripcion.setText(tarea.getDescripcion());
+        porcentaje.setText(tarea.getPorcentaje()+"");
+        Date date=tarea.getFecha();
+        Calendar.getInstance().setTime(date);
+        nota.setVisibility(View.VISIBLE);
+        nota.setText(tarea.getNota()+"");
+        posTareaEdicion=intent.getIntExtra(TareasActivity.POS_TAREA,-1);
+        hora.setText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + " : " + Calendar.getInstance().get(Calendar.MINUTE));
+        fecha.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+ "/" + Calendar.getInstance().get(Calendar.MONTH) +"/"+ Calendar.getInstance().get(Calendar.YEAR));
     }
     public void inicialiarEditText()
     {
@@ -194,6 +207,38 @@ public class AgregarTareaActivity extends AppCompatActivity
                 }
             }
         });
+
+        nota.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                validarEditTextNota(nota);
+            }
+        });
+        nota.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditTextNota(nota);
+                }
+            }
+        });
     }
     public void validarEditTextNota(TextView textView)
     {
@@ -229,7 +274,7 @@ public class AgregarTareaActivity extends AppCompatActivity
     }
     private void showTimePicker()
     {
-        TimePickerDialog tpd = new TimePickerDialog(AgregarTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog tpd = new TimePickerDialog(EditarActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute)
             {
@@ -249,7 +294,7 @@ public class AgregarTareaActivity extends AppCompatActivity
     private void showDatePicker()
     {
         // Launch Date Picker Dialog
-        DatePickerDialog dpd = new DatePickerDialog(AgregarTareaActivity.this,
+        DatePickerDialog dpd = new DatePickerDialog(EditarActivity.this,
                 new DatePickerDialog.OnDateSetListener()
                 {
                     @Override
@@ -288,23 +333,24 @@ public class AgregarTareaActivity extends AppCompatActivity
         validarEditText(fecha);
         validarEditText(hora);
         validarEditText(porcentaje);
-
-        if(nombre.getError()!=null
+        validarEditTextNota(nota);
+        if(nota.getError()!=null|| nombre.getError()!=null
                 || descripcion.getError()!=null || porcentaje.getError()!=null
                 || fecha.getError()!=null || hora.getError()!=null)
         {
             return;
         }
-        else
-        {
+        else {
             Date fechD = Calendar.getInstance().getTime();
             Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
+            tarea.setNota(Double.parseDouble(nota.getText().toString()));
             Intent intent = new Intent();
-            intent.putExtra(NUEVA_TAREA, tarea);
+            intent.putExtra(TareasActivity.POS_TAREA,posTareaEdicion);
+            intent.putExtra(TAREA_EDITADA,tarea);
             setResult(RESULT_OK, intent);
             finish();
         }
 
-    }
 
+    }
 }

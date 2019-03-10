@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity
         servicioCalPPA=ServicioCalPPA.getInstance();
         inicializarRecyclerView();
 
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
-        Log.w("Asd","onCreate");
-
     }
     private void inicializarRecyclerView()
     {
@@ -97,11 +94,6 @@ public class MainActivity extends AppCompatActivity
 
         txtPPA.setText(String.format("%.2f",servicioCalPPA.calcularPPA()));
     }
-    public void btnCalcularPpa(View view)
-    {
-        calculaPpa();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
@@ -118,50 +110,13 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
     @Override
     protected void onResume()
     {
         super.onResume();
-        // The activity has become visible (it is now "resumed").
+
         ma.notifyDataSetChanged();
         calculaPpa();
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-        Log.w("Asd","onResume");
-    }
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        // The activity is about to become visible.
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
-        Log.w("Asd","onStart");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Another activity is taking focus (this activity is about to be "paused").
-        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
-        Log.w("Asd","onPause");
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // The activity is no longer visible (it is now "stopped")
-        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
-        Log.w("Asd","onStop");
-
-
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // The activity is about to be destroyed.
-        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
-        Log.w("Asd","onDestroy");
-
-
     }
 
 }

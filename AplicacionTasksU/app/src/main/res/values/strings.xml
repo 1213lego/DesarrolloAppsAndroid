@@ -29,4 +29,6 @@
     <string name="hintPorcentaje">Porcentaje de la tarea</string>
     <string name="hintNota">Nota</string>
     <string name="validar_txt_nota">La nota debe ser mayor a 0 y menor a 5</string>
+    <string name="title_activity_editar_tarea">Edita tu tarea</string>
+
 </resources>
