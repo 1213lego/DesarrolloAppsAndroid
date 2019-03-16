@@ -28,54 +28,20 @@
             android:background="@drawable/itembackgroundvector">
 
             <TextView
-                android:id="@+id/labNombreAsignatura"
-                android:layout_width="143dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/labNombreAsignatura"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.035"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/labNombreDocente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/labNombreDocente"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.032"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labNombreAsignatura"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
                 android:id="@+id/txtNAsignatura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="Materia X"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
-                app:layout_constraintStart_toEndOf="@+id/labNombreAsignatura"
+                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -87,71 +53,69 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="Docente X"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.394"
-                app:layout_constraintStart_toEndOf="@+id/labNombreDocente"
+                app:layout_constraintHorizontal_bias="0.046"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNAsignatura"
-                app:layout_constraintVertical_bias="0.027" />
+                app:layout_constraintVertical_bias="0.067" />
 
             <TextView
                 android:id="@+id/txtCreditos"
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
+                android:layout_height="21dp"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="3"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNDocente"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintVertical_bias="0.2" />
 
             <TextView
                 android:id="@+id/txtNota"
                 android:layout_width="wrap_content"
-                android:layout_height="21dp"
+                android:layout_height="19dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="120dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="3.6"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNDocente"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.757" />
 
             <TextView
                 android:id="@+id/labCreditos"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/labCreditos"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/labNombreDocente"
-                app:layout_constraintVertical_bias="0.305" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNDocente"
+                app:layout_constraintVertical_bias="0.222" />
 
             <TextView
                 android:id="@+id/labNota"
                 android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="19dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="32dp"
                 android:text="@string/labNota"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtNota"
-                app:layout_constraintTop_toBottomOf="@+id/txtNDocente"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintEnd_toStartOf="@+id/txtNota" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -164,6 +128,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageEmoji"
+                android:layout_width="79dp"
+                android:layout_height="61dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.14"
+                app:srcCompat="@drawable/ic_weary" />
 
         </android.support.constraint.ConstraintLayout>
 

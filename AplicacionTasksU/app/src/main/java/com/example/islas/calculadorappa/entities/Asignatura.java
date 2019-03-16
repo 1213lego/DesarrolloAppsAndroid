@@ -13,8 +13,9 @@ public class Asignatura implements Serializable
     private double notaProducto;
     private ArrayList<Tarea> tareas;
     private double porcentajeActual;
+    private int semestre;
 
-    public Asignatura(String nombreAsignatura, String nombreDocente, int numerocreditos)
+    public Asignatura(String nombreAsignatura, String nombreDocente, int numerocreditos, int semestre)
     {
         this.nombreAsignatura = nombreAsignatura;
         this.nombreDocente = nombreDocente;
@@ -22,6 +23,7 @@ public class Asignatura implements Serializable
         this.notafinal = 0.0;
         this.notaProducto=0.0;
         this.tareas=new ArrayList<>();
+        this.semestre=semestre;
         porcentajeActual=0.0;
     }
 

@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity
     }
     private void calculaPpa()
     {
-
         txtPPA.setText(String.format("%.2f",servicioCalPPA.calcularPPA()));
     }
     @Override

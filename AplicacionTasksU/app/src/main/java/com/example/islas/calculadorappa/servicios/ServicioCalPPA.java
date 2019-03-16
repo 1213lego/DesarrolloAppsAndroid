@@ -38,6 +38,10 @@ public class ServicioCalPPA
 
 
         }
+        if(creditosAcumulados==0.0)
+        {
+            return 0;
+        }
         ppa = notaProductoAcumulado/creditosAcumulados;
         return ppa;
 

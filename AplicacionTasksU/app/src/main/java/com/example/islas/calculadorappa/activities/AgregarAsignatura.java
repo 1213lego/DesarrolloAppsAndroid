@@ -7,8 +7,11 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.R;
@@ -19,11 +22,18 @@ public class AgregarAsignatura extends AppCompatActivity
     private EditText nombreAsignatura;
     private EditText nombreDocente;
     private EditText creditos;
+    private Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_asignatura);
+        spinner=findViewById(R.id.spinnerSemestre);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.semestres_spinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         inicializarEditText();
     }
     private void inicializarEditText()
@@ -121,11 +131,6 @@ public class AgregarAsignatura extends AppCompatActivity
                 }
             }
         });
-
-
-
-
-
     }
     //Valida si un campo de texto es vacio
     public void validarEditText(TextView textView)
@@ -155,7 +160,7 @@ public class AgregarAsignatura extends AppCompatActivity
         else
         {
             Asignatura asignatura= new Asignatura(nombreAsignatura.getText().toString(),
-                    nombreDocente.getText().toString(),Integer.parseInt(creditos.getText().toString()));
+                    nombreDocente.getText().toString(),Integer.parseInt(creditos.getText().toString()),spinner.getSelectedItemPosition());
             Intent intent = new Intent();
             intent.putExtra(NUEVA_MATERIA,asignatura);
             setResult(RESULT_OK,intent);

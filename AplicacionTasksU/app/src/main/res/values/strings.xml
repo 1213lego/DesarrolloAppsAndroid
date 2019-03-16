@@ -32,5 +32,18 @@
     <string name="title_activity_editar_tarea">Edita tu tarea</string>
     <string name="validaciont_edit_text_porcentaje">esta excediendo el 100%, actualmente hay </string>
 
+    <string-array name="semestres_spinner">
+        <item>Primero</item>
+        <item>Segundo</item>
+        <item>Tercero</item>
+        <item>Cuarto</item>
+        <item>Quinto</item>
+        <item>Sexto</item>
+        <item>Septimo</item>
+        <item>Octavo</item>
+        <item>Noveno</item>
+        <item>Decimo</item>
+    </string-array>
+
 
 </resources>
