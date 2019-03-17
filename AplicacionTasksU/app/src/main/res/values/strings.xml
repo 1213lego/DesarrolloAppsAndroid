@@ -25,7 +25,7 @@
     <string name="titleToolbarTareas">Tareas de </string>
     <string name="hintFechaEntrega">Fecha de entrega</string>
     <string name="hintHoraEntrega">Hora de entrega</string>
-    <string name="labPorcentajeCompletado">Has completado:</string>
+    <string name="labPorcentajeCompletado">Tu Progreso :</string>
     <string name="hintPorcentaje">Porcentaje de la tarea</string>
     <string name="hintNota">Nota</string>
     <string name="validar_txt_nota">La nota debe ser mayor a 0 y menor a 5</string>

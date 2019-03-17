@@ -1,5 +1,6 @@
 package com.example.islas.calculadorappa.servicios;
 
+import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.entities.Tarea;
 
@@ -58,11 +59,53 @@ public class ServicioCalPPA
         double suma = 0.0;
         for(int i=0 ; i<tareas.size();i++)
         {
-           suma+= (int) tareas.get(i).getNota()*(tareas.get(i).getPorcentaje()/100);
+           suma+= tareas.get(i).getNota()*(tareas.get(i).getPorcentaje()/100);
 
         }
         int resultado = (int) (suma*100)/5;
     return resultado;
+    }
+    public int darEmojiAsigantura(int pos)
+    {
+        double nota=asignaturas.get(pos).getNotafinal();
+        int result=0;
+        if(nota<=0.6)
+        {
+            result= R.drawable.dizzyface;
+        }
+        else if(nota>0.6 && nota<=1.2)
+        {
+            result=R.drawable.cryingface;
+        }
+        else if(nota>1.2 && nota <=1.8)
+        {
+            result=R.drawable.loudly;
+        }
+        else if(nota>1.8 && nota<=2.4)
+        {
+            result=R.drawable.worried;
+        }
+        else if(nota>2.4 && nota<=3.0)
+        {
+            result=R.drawable.thinking;
+        }
+        else if(nota>3.0 && nota<=3.6)
+        {
+            result=R.drawable.relieved;
+        }
+        else if(nota>3.6 && nota<=4.2)
+        {
+            result=R.drawable.grimacing;
+        }
+        else if(nota>4.2 && nota<=4.8)
+        {
+            result=R.drawable.grinning;
+        }
+        else
+        {
+            result=R.drawable.nerd;
+        }
+        return result;
     }
     public double darNotaAsignatura(int pos)
 

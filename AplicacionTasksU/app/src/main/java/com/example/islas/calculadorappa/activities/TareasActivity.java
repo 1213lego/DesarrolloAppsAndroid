@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.islas.calculadorappa.R;
@@ -30,6 +31,7 @@ public class TareasActivity extends AppCompatActivity
     private TareaAdapter ta;
     private Asignatura asignatura;
     private ProgressBar progressBar;
+    private TextView txtProgreso;
     private int posAsignatura;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +42,7 @@ public class TareasActivity extends AppCompatActivity
         posAsignatura=intent.getIntExtra(MainActivity.POS_ASIGNATURA,-1);
         asignatura=ServicioCalPPA.getInstance().getAsignaturas().get(posAsignatura);
 
+        txtProgreso=findViewById(R.id.txtProgreso);
         FloatingActionButton fab = findViewById(R.id.fab);
         progressBar=findViewById(R.id.progressBarTareas);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -84,7 +87,9 @@ public class TareasActivity extends AppCompatActivity
 
     public void setProgressBar()
     {
-        progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura));
+        int progreso=ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura);
+        txtProgreso.setText(progreso+ "%");
+        progressBar.setProgress(progreso);
         ServicioCalPPA.getInstance().setNotaAsignatura(posAsignatura,ServicioCalPPA.getInstance().darNotaAsignatura(posAsignatura));
     }
 

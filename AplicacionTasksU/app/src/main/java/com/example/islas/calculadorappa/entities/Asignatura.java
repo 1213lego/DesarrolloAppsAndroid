@@ -63,4 +63,7 @@ public class Asignatura implements Serializable
         return porcentajeActual;
     }
 
+    public double getNotafinal() {
+        return notafinal;
+    }
 }

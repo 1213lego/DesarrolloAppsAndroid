@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -37,9 +38,10 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
         materiaHolder.docente.setText(materias.get(i).getNombreDocente());
         materiaHolder.creditos.setText(materias.get(i).getCreditos()+"");
         materiaHolder.nombre.setText(materias.get(i).getNombreAsignatura());
-        materiaHolder.nota.setText(ServicioCalPPA.getInstance().darNotaAsignatura(i)+"");
+        materiaHolder.nota.setText(String.format("%.2f",ServicioCalPPA.getInstance().darNotaAsignatura(i)));
         materiaHolder.progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(i));
-
+        materiaHolder.emoji.setImageResource(ServicioCalPPA.getInstance().darEmojiAsigantura(i));
+        materiaHolder.itemView.animate();
     }
     @Override
     public int getItemCount()
@@ -71,6 +73,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
         private TextView docente;
         private TextView creditos;
         private TextView nota;
+        private ImageView emoji;
         private ProgressBar progressBar;
         public MateriaHolder(@NonNull View itemView)
         {
@@ -80,6 +83,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
             creditos=itemView.findViewById(R.id.txtCreditos);
             nota=itemView.findViewById(R.id.txtNota);
             progressBar=itemView.findViewById(R.id.progressBar);
+            emoji=itemView.findViewById(R.id.imgEmoji);
 
             itemView.setOnClickListener(new View.OnClickListener()
             {
@@ -96,8 +100,6 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
             });
             if(getAdapterPosition()!=RecyclerView.NO_POSITION)
             {
-
-                System.out.println("algo paso");
             }
         }
 

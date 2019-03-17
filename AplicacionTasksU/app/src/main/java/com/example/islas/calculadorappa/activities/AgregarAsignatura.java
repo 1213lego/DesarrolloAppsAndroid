@@ -30,6 +30,7 @@ public class AgregarAsignatura extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_asignatura);
         spinner=findViewById(R.id.spinnerSemestre);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.semestres_spinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
