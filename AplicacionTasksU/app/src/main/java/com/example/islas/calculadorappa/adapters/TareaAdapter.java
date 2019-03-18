@@ -2,6 +2,7 @@ package com.example.islas.calculadorappa.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Tarea;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
@@ -35,8 +37,10 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
 
         tareaHolder.nombre.setText(tareas.get(i).getNombre());
         tareaHolder.descripcion.setText(tareas.get(i).getDescripcion());
-        tareaHolder.fecha.setText(tareas.get(i).getFecha()+"");
-        tareaHolder.porcentaje.setText(tareas.get(i).getPorcentaje()+"");
+        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(tareaHolder.itemView.getContext());
+        DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(tareaHolder.itemView.getContext());
+        tareaHolder.fecha.setText(dateFormat.format(tareas.get(i).getFecha())+ " "+timeFormat.format(tareas.get(i).getPorcentaje()));
+        tareaHolder.porcentaje.setText(tareas.get(i).getPorcentaje()+" " );
         tareaHolder.nota.setText(tareas.get(i).getNota()+"");
     }
     @Override
@@ -73,6 +77,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
             super(itemView);
             nombre=itemView.findViewById(R.id.txtNTarea);
             descripcion=itemView.findViewById(R.id.txtDescripcion);
+            descripcion.setInputType(InputType.TYPE_NULL);
             fecha=itemView.findViewById(R.id.txtFecha);
             porcentaje=itemView.findViewById(R.id.txtPorcentaje);
             nota=itemView.findViewById(R.id.txtCVTNota);

@@ -40,7 +40,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
@@ -58,10 +58,10 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.046"
+                app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNAsignatura"
-                app:layout_constraintVertical_bias="0.067" />
+                app:layout_constraintVertical_bias="0.016" />
 
             <TextView
                 android:id="@+id/txtCreditos"
@@ -94,7 +94,7 @@
                 android:id="@+id/labCreditos"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/labCreditos"
@@ -103,7 +103,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNDocente"
-                app:layout_constraintVertical_bias="0.222" />
+                app:layout_constraintVertical_bias="0.238" />
 
             <TextView
                 android:id="@+id/labNota"

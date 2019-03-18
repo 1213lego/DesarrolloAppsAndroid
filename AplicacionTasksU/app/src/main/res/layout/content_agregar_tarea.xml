@@ -91,17 +91,14 @@
                 android:id="@+id/txtFecha"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:background="@drawable/vectorcuadrosagregar"
                 android:ems="10"
                 android:hint="@string/hintFechaEntrega"
                 android:inputType="date"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.055"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
 
@@ -124,34 +121,34 @@
                 android:id="@+id/btncalendar"
                 android:layout_width="60dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/btncalendar"
                 android:onClick="btnFecha"
-                app:layout_constraintStart_toEndOf="@+id/txtFecha"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
 
             <Button
                 android:id="@+id/btnclock"
                 android:layout_width="61dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/btnclock"
                 android:onClick="btnHora"
-                app:layout_constraintStart_toEndOf="@+id/txtHora"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btncalendar" />
 
             <TextView
                 android:id="@+id/txtpct"
                 android:layout_width="25dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="36dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
                 android:text="%"
                 android:textSize="36sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/txtPorcentaje"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnclock" />
 
             <Button
