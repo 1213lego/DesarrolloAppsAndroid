@@ -11,6 +11,7 @@ public class Tarea implements Serializable
     private Date fecha;
     private double porcentaje;
     private double nota;
+    private boolean esParcial;
     public Tarea(String nombre, String descripcion, Date fecha, double porcentaje)
     {
         this.nombre = nombre;
@@ -18,6 +19,15 @@ public class Tarea implements Serializable
         this.fecha = fecha;
         this.porcentaje = porcentaje;
         this.nota = 0.0;
+        esParcial=false;
+    }
+
+    public boolean isEsParcial() {
+        return esParcial;
+    }
+
+    public void setEsParcial(boolean esParcial) {
+        this.esParcial = esParcial;
     }
 
     public String getNombre() {

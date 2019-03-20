@@ -1,6 +1,7 @@
 package com.example.islas.calculadorappa.adapters;
 
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -34,7 +35,6 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
     @Override
     public void onBindViewHolder(@NonNull TareaAdapter.TareaHolder tareaHolder, int i)
     {
-
         tareaHolder.nombre.setText(tareas.get(i).getNombre());
         tareaHolder.descripcion.setText(tareas.get(i).getDescripcion());
         DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(tareaHolder.itemView.getContext());
@@ -42,6 +42,11 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
         tareaHolder.fecha.setText(dateFormat.format(tareas.get(i).getFecha())+ " "+timeFormat.format(tareas.get(i).getPorcentaje()));
         tareaHolder.porcentaje.setText(tareas.get(i).getPorcentaje()+" " );
         tareaHolder.nota.setText(tareas.get(i).getNota()+"");
+        if(tareas.get(i).isEsParcial())
+        {
+            tareaHolder.constraintLayout.setBackgroundResource(R.drawable.vector_es_parcial_background);
+        }
+
     }
     @Override
     public int getItemCount()
@@ -71,10 +76,11 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaHolder>
         private TextView fecha;
         private TextView porcentaje;
         private TextView nota;
-
+        private ConstraintLayout constraintLayout;
         public TareaHolder(@NonNull View itemView)
         {
             super(itemView);
+            constraintLayout=itemView.findViewById(R.id.constraint_item_tarea_background);
             nombre=itemView.findViewById(R.id.txtNTarea);
             descripcion=itemView.findViewById(R.id.txtDescripcion);
             descripcion.setInputType(InputType.TYPE_NULL);

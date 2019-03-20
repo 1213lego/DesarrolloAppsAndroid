@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -34,6 +35,7 @@ public class EditarActivity extends AppCompatActivity
     private EditText hora;
     private EditText porcentaje;
     private EditText nota;
+    private RadioButton rdEsParcial;
     private double porcentajeActual;
 
     @Override
@@ -44,12 +46,16 @@ public class EditarActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.title_activity_editar_tarea);
         setSupportActionBar(toolbar);
+
+        rdEsParcial=findViewById(R.id.rbEsParcial);
         nombre=findViewById(R.id.txtNombreTarea);
         descripcion=findViewById(R.id.txtDescripcion);
         fecha=findViewById(R.id.txtFecha);
         porcentaje=findViewById(R.id.txtPorcentaje);
         hora=findViewById(R.id.txtHora);
         nota=findViewById(R.id.txtNota);
+
+        //Recibe el intent con la tarea a modifical e inicializa sus datos
         Intent intent=getIntent();
         porcentajeActual=intent.getDoubleExtra(TareasActivity.PORCENTAJE_ACTUAL,-1);
         Tarea tarea=(Tarea)intent.getSerializableExtra(TareasActivity.TAREA);
@@ -368,6 +374,7 @@ public class EditarActivity extends AppCompatActivity
             Date fechD = Calendar.getInstance().getTime();
             Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
             tarea.setNota(Double.parseDouble(nota.getText().toString()));
+            tarea.setEsParcial(rdEsParcial.isChecked());
             Intent intent = new Intent();
             intent.putExtra(TareasActivity.POS_TAREA,posTareaEdicion);
             intent.putExtra(TAREA_EDITADA,tarea);

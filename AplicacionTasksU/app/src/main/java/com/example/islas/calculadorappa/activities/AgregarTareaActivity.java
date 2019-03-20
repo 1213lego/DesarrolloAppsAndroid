@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class AgregarTareaActivity extends AppCompatActivity
     private EditText fecha;
     private EditText hora;
     private EditText porcentaje;
+    private RadioButton rdEsParcial;
+
     private double porcentajeActual;
 
     @Override
@@ -48,6 +51,8 @@ public class AgregarTareaActivity extends AppCompatActivity
         hora=findViewById(R.id.txtHora);
         inicialiarEditText();
         porcentajeActual=getIntent().getDoubleExtra(TareasActivity.PORCENTAJE_ACTUAL,-1);
+        rdEsParcial=findViewById(R.id.rbEsParcial);
+
 
     }
     public void inicialiarEditText()
@@ -300,6 +305,7 @@ public class AgregarTareaActivity extends AppCompatActivity
         {
             Date fechD = Calendar.getInstance().getTime();
             Tarea tarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechD, Double.parseDouble(porcentaje.getText().toString()));
+            tarea.setEsParcial(rdEsParcial.isChecked());
             Intent intent = new Intent();
             intent.putExtra(NUEVA_TAREA, tarea);
             setResult(RESULT_OK, intent);
