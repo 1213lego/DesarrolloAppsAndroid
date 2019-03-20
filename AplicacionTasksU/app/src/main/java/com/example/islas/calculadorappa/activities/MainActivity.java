@@ -1,7 +1,9 @@
 package com.example.islas.calculadorappa.activities;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,13 +34,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
-
         txtPPA= findViewById(R.id.txtPPA);
         servicioCalPPA=ServicioCalPPA.getInstance();
         inicializarRecyclerView();
-
     }
     private void inicializarRecyclerView()
     {
