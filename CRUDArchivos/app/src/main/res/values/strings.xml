@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">CRUDArchivos</string>
+    <string name="titAsignaturas">Asignaturas</string>
+    <string name="nomAsignatura">Nombre Asignatura</string>
+    <string name="agregarAsignatura">Agregar Asignatura</string>
+    <string name="nomDocente">Nombre Docente</string>
+    <string name="numeroCreditos">Numero Creditos</string>
+    <string name="guardar">Guardar</string>
+    <string name="labNombreDocente">Nombre Docente:</string>
+    <string name="labNombreAsignatura">Nombre Asignatura:</string>
+    <string name="labNota">Nota:</string>
+    <string name="labCreditos">Creditos:</string>
+    <string name="error_input">Espacio Requerido</string>
+    <string-array name="semestres_spinner">
+        <item>Primero</item>
+        <item>Segundo</item>
+        <item>Tercero</item>
+        <item>Cuarto</item>
+        <item>Quinto</item>
+        <item>Sexto</item>
+        <item>Septimo</item>
+        <item>Octavo</item>
+        <item>Noveno</item>
+        <item>Decimo</item>
+    </string-array>
+    <string name="title_activity_editar">EditarActivity</string>
+    <string name="title_activity_eliminar_asignatura">EliminarAsignatura</string>
+</resources>
