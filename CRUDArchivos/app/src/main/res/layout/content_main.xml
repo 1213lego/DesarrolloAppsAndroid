@@ -11,11 +11,10 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerTareas"
         android:layout_width="0dp"
-        android:layout_height="537dp"
+        android:layout_height="566dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

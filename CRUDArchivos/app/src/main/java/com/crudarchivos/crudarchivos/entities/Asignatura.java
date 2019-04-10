@@ -40,7 +40,7 @@ public class Asignatura implements Serializable
         int tamCadena=cadena.length();
         if(tamCadena>tamMax)
         {
-            throw new Exception("El campo no puede tener mas de " +tamMax+ " caracteres");
+            throw new Exception("El campo donde escribio "+ cadena+" no puede tener mas de " +tamMax+ " caracteres");
         }
         else
         {

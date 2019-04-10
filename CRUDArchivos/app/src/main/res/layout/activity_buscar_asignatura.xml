@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.BuscarAsignatura">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,27 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_main"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/live__plus_icon_1099279" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="left|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_search_category_default" />
+    <include layout="@layout/content_buscar_asignatura" />
 
 
 </android.support.design.widget.CoordinatorLayout>

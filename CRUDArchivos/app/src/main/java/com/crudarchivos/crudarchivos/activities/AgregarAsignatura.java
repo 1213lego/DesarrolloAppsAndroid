@@ -57,7 +57,6 @@ public class AgregarAsignatura extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-
             }
             @Override
             public void afterTextChanged(Editable s)
@@ -113,7 +112,7 @@ public class AgregarAsignatura extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                Toast.makeText(AgregarAsignatura.this, ""+count, Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void afterTextChanged(Editable s)
@@ -200,7 +199,7 @@ public class AgregarAsignatura extends AppCompatActivity
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();;
             }
         }
     }

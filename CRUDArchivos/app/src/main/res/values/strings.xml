@@ -27,6 +27,7 @@
     <string name="archivoAsignaturas">Asignaturas</string>
     <string name="title_activity_main_editar">Asignaturas</string>
     <string name="codigo_asignatura">Codigo Asignatura</string>
-
+    <string name="title_activity_buscar_asignatura">BuscarAsignatura</string>
+    <string name="title_activity_buscar">Buscar Asignatura</string>
 
 </resources>

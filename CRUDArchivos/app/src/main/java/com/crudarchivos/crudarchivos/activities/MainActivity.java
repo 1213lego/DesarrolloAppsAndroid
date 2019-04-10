@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar =findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.titAsignaturas));
         setSupportActionBar(toolbar);
-        servicioAsignatura=new ServicioAsignatura(this.getFilesDir());
+        servicioAsignatura=ServicioAsignatura.getInstance(this.getFilesDir());
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -43,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
             {
                 Intent intent=new Intent(MainActivity.this, AgregarAsignatura.class);
                 startActivityForResult(intent,REQUEST_CODE_AGREGAR_ASIGNATURA);
+
+            }
+        });
+
+        FloatingActionButton buscar = findViewById(R.id.fabBuscar);
+        buscar.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent=new Intent(MainActivity.this, BuscarAsignatura.class);
+                startActivity(intent);
 
             }
         });
@@ -94,9 +106,12 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode==RESULT_OK)
             {
                 Asignatura asignatura=(Asignatura) data.getSerializableExtra(AgregarAsignatura.NUEVA_MATERIA);
-                servicioAsignatura.guardar(asignatura);
+                try {
+                    servicioAsignatura.guardar(asignatura);
+                } catch (Exception e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
-
         }
         ma.setMaterias(servicioAsignatura.getAsignaturas());
         ma.notifyDataSetChanged();

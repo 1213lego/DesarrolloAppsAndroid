@@ -8,14 +8,23 @@ import java.util.ArrayList;
 
 public class ServicioAsignatura
 {
+    private static ServicioAsignatura instance;
     private static final String NOMBRE_ARCHIVO="asignaturas.txt";
     private ArrayList<Asignatura> asignaturas;
     private File archivoAsignaturas;
     private RandomAccessFile raf;
-    public ServicioAsignatura(File file)
+    private ServicioAsignatura(File file)
     {
         asignaturas=new ArrayList<>();
         archivoAsignaturas=new File(file.getPath(),NOMBRE_ARCHIVO);
+    }
+    public static ServicioAsignatura getInstance(File file)
+    {
+        if(instance==null)
+        {
+            instance=new ServicioAsignatura(file);
+        }
+        return instance;
     }
     public ArrayList<Asignatura> getAsignaturas()
     {
@@ -23,22 +32,40 @@ public class ServicioAsignatura
         return asignaturas;
     }
 
-    public void guardar(Asignatura asignatura)
+    public void guardar(Asignatura asignatura) throws Exception
     {
         try
         {
             raf=new RandomAccessFile(archivoAsignaturas,"rw");
-            if(existe(asignatura.getCodigoAsignatura())==null)
+            String existe=existe(asignatura.getCodigoAsignatura());
+            if(existe==null)
             {
                 raf.seek(archivoAsignaturas.length());
                 raf.writeUTF(asignatura.darCampos());
                 raf.close();
+            }
+            else
+            {
+                throw new Exception("No se ha podido guarda porque ya exite una asigantura con el codigo "+ asignatura.getCodigoAsignatura().trim());
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+    }
+    public Asignatura buscarAsignatura(String codigoBuscado)
+    {
+        Asignatura buscada=null;
+        for(Asignatura asignatura:asignaturas)
+        {
+            if(asignatura.getCodigoAsignatura().trim().equals(codigoBuscado.trim()))
+            {
+                buscada=asignatura;
+                break;
+            }
+        }
+        return buscada;
     }
     private String existe(String codigoBuscado)
     {
