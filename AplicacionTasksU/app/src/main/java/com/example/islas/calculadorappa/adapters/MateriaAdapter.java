@@ -1,21 +1,16 @@
 package com.example.islas.calculadorappa.adapters;
 
-import android.content.SyncStatusObserver;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Asignatura;
-import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 
 import java.util.ArrayList;
-
 
 public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaHolder>
 {
@@ -35,13 +30,11 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
     @Override
     public void onBindViewHolder(@NonNull MateriaHolder materiaHolder, int i)
     {
-        materiaHolder.docente.setText(materias.get(i).getNombreDocente());
+        materiaHolder.codigo.setText(materias.get(i).getCodigoAsignatura().trim());
+        materiaHolder.docente.setText(materias.get(i).getNombreDocente().trim());
         materiaHolder.creditos.setText(materias.get(i).getCreditos()+"");
-        materiaHolder.nombre.setText(materias.get(i).getNombreAsignatura());
-        materiaHolder.nota.setText(String.format("%.2f",ServicioCalPPA.getInstance().darNotaAsignatura(i)));
-        materiaHolder.progressBar.setProgress(ServicioCalPPA.getInstance().progresoAsignatura(i));
-        materiaHolder.emoji.setImageResource(ServicioCalPPA.getInstance().darEmojiAsigantura(i));
-        materiaHolder.itemView.animate();
+        materiaHolder.nombre.setText(materias.get(i).getNombreAsignatura().trim());
+        materiaHolder.semestre.setText(materias.get(i).getSemestre()+"");
     }
     @Override
     public int getItemCount()
@@ -69,21 +62,20 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
     //Esta clase representa cada elemento de la coleccion del RecyclerView, item
     class MateriaHolder extends RecyclerView.ViewHolder
     {
+        private TextView codigo;
         private TextView nombre;
         private TextView docente;
         private TextView creditos;
-        private TextView nota;
-        private ImageView emoji;
-        private ProgressBar progressBar;
+        private TextView semestre;
+
         public MateriaHolder(@NonNull View itemView)
         {
             super(itemView);
+            codigo=itemView.findViewById(R.id.txtCodigoAsignatura);
             nombre=itemView.findViewById(R.id.txtNAsignatura);
             docente=itemView.findViewById(R.id.txtNDocente);
-            creditos=itemView.findViewById(R.id.txtCreditos);
-            nota=itemView.findViewById(R.id.txtNota);
-            progressBar=itemView.findViewById(R.id.progressBar);
-            emoji=itemView.findViewById(R.id.imgEmoji);
+            creditos=itemView.findViewById(R.id.txtCreditosItem);
+            semestre=itemView.findViewById(R.id.txtSemestre);
 
             itemView.setOnClickListener(new View.OnClickListener()
             {
@@ -95,12 +87,8 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaH
                     {
                         listener.onItemClick(pos);
                     }
-
                 }
             });
-            if(getAdapterPosition()!=RecyclerView.NO_POSITION)
-            {
-            }
         }
 
     }

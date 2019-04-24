@@ -1,8 +1,6 @@
 package com.crudarchivos.crudarchivos.activities;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +15,6 @@ import com.crudarchivos.crudarchivos.R;
 import com.crudarchivos.crudarchivos.adapters.MateriaAdapter;
 import com.crudarchivos.crudarchivos.entities.Asignatura;
 import com.crudarchivos.crudarchivos.services.ServicioAsignatura;
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_AGREGAR_ASIGNATURA=1;
@@ -114,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         ma.setMaterias(servicioAsignatura.getAsignaturas());
+        ma.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
         ma.notifyDataSetChanged();
     }
 }

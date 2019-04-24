@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.islas.calculadorappa.R;
 import com.example.islas.calculadorappa.entities.Asignatura;
@@ -40,7 +39,7 @@ public class TareasActivity extends AppCompatActivity
         setContentView(R.layout.activity_tareas);
         Intent intent=getIntent();
         posAsignatura=intent.getIntExtra(MainActivity.POS_ASIGNATURA,-1);
-        asignatura=ServicioCalPPA.getInstance().getAsignaturas().get(posAsignatura);
+        asignatura=ServicioCalPPA.getInstance(null).getAsignaturas().get(posAsignatura);
 
         txtProgreso=findViewById(R.id.txtProgreso);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -87,10 +86,10 @@ public class TareasActivity extends AppCompatActivity
 
     public void setProgressBar()
     {
-        int progreso=ServicioCalPPA.getInstance().progresoAsignatura(posAsignatura);
+        int progreso=ServicioCalPPA.getInstance(null).progresoAsignatura(posAsignatura);
         txtProgreso.setText(progreso+ "%");
         progressBar.setProgress(progreso);
-        ServicioCalPPA.getInstance().setNotaAsignatura(posAsignatura,ServicioCalPPA.getInstance().darNotaAsignatura(posAsignatura));
+        ServicioCalPPA.getInstance(null).setNotaAsignatura(posAsignatura,ServicioCalPPA.getInstance(null).darNotaAsignatura(posAsignatura));
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com.example.islas.calculadorappa.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,12 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Asignatura;
 
 public class AgregarAsignatura extends AppCompatActivity
 {
     public final static String NUEVA_MATERIA= "NUEVA MATERIA";
+    private EditText codigoAsignatura;
     private EditText nombreAsignatura;
     private EditText nombreDocente;
     private EditText creditos;
@@ -29,8 +31,10 @@ public class AgregarAsignatura extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_asignatura);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.agregarAsignatura));
+        setSupportActionBar(toolbar);
         spinner=findViewById(R.id.spinnerSemestre);
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.semestres_spinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -42,8 +46,8 @@ public class AgregarAsignatura extends AppCompatActivity
         nombreAsignatura=findViewById(R.id.txtNomAsignatura);
         nombreDocente=findViewById(R.id.txtNomDocente);
         creditos=findViewById(R.id.txtNumCreditos);
-
-        nombreAsignatura.addTextChangedListener(new TextWatcher()
+        codigoAsignatura=findViewById(R.id.txtCodigoAsignatura);
+        codigoAsignatura.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -53,7 +57,33 @@ public class AgregarAsignatura extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-
+            }
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                validarEditText(codigoAsignatura);
+            }
+        });
+        codigoAsignatura.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if(!hasFocus)
+                {
+                    validarEditText(codigoAsignatura);
+                }
+            }
+        });
+        nombreAsignatura.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
             }
             @Override
             public void afterTextChanged(Editable s)
@@ -78,7 +108,6 @@ public class AgregarAsignatura extends AppCompatActivity
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {
-
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
@@ -108,12 +137,10 @@ public class AgregarAsignatura extends AppCompatActivity
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {
-
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-
             }
             @Override
             public void afterTextChanged(Editable s)
@@ -160,12 +187,20 @@ public class AgregarAsignatura extends AppCompatActivity
         }
         else
         {
-            Asignatura asignatura= new Asignatura(nombreAsignatura.getText().toString(),
-                    nombreDocente.getText().toString(),Integer.parseInt(creditos.getText().toString()),spinner.getSelectedItemPosition());
-            Intent intent = new Intent();
-            intent.putExtra(NUEVA_MATERIA,asignatura);
-            setResult(RESULT_OK,intent);
-            finish();
+            Asignatura asignatura= null;
+            try
+            {
+                asignatura = new Asignatura(codigoAsignatura.getText().toString(),nombreAsignatura.getText().toString(),
+                        nombreDocente.getText().toString(),Integer.parseInt(creditos.getText().toString()),spinner.getSelectedItemPosition()+1);
+                Intent intent = new Intent();
+                intent.putExtra(NUEVA_MATERIA,asignatura);
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();;
+            }
         }
     }
     public void backButton(View view)

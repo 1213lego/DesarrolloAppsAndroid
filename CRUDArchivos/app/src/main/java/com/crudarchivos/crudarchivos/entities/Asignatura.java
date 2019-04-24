@@ -1,6 +1,7 @@
 package com.crudarchivos.crudarchivos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Asignatura implements Serializable
 {
@@ -19,6 +20,10 @@ public class Asignatura implements Serializable
     private int creditos;
     private int semestre;
     private char estado;
+
+    private double notafinal;
+    private double notaProducto;
+    private double porcentajeActual;
 
     public Asignatura(String codigoAsignatura, String nombreAsignatura, String nombreDocente, int numerocreditos, int semestre) throws Exception
     {
@@ -112,5 +117,14 @@ public class Asignatura implements Serializable
     public void setEstado(char estado)
     {
         this.estado = estado;
+    }
+
+
+    public double getPorcentajeActual() {
+        return porcentajeActual;
+    }
+
+    public double getNotafinal() {
+        return notafinal;
     }
 }

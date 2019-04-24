@@ -1,4 +1,4 @@
-package com.crudarchivos.crudarchivos.activities;
+package com.example.islas.calculadorappa.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crudarchivos.crudarchivos.R;
-import com.crudarchivos.crudarchivos.entities.Asignatura;
-import com.crudarchivos.crudarchivos.services.ServicioAsignatura;
+import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Asignatura;
+import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 
 public class BuscarAsignatura extends AppCompatActivity
 {
@@ -25,6 +25,7 @@ public class BuscarAsignatura extends AppCompatActivity
     private EditText creditos;
     private EditText semestre;
     private Button btnEditar;
+    private int posAEditar;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -52,9 +53,11 @@ public class BuscarAsignatura extends AppCompatActivity
         if(!TextUtils.isEmpty(codigoABuscar.getText()))
         {
             cardView.setVisibility(View.INVISIBLE);
-            Asignatura buscada= ServicioAsignatura.getInstance(null).buscarAsignatura(codigoABuscar.getText().toString());
-            if(buscada!=null)
+            int pos= ServicioCalPPA.getInstance(null).buscarAsignatura(codigoABuscar.getText().toString());
+            if(pos!=-1)
             {
+                posAEditar=pos;
+                Asignatura buscada=ServicioCalPPA.getInstance(null).getAsignaturas().get(pos);
                 codigo.setText(buscada.getCodigoAsignatura().trim());
                 docente.setText(buscada.getNombreDocente().trim());
                 nombre.setText(buscada.getNombreAsignatura().trim());
@@ -74,7 +77,7 @@ public class BuscarAsignatura extends AppCompatActivity
             Asignatura asignatura=new Asignatura(codigo.getText().toString(),
                     nombre.getText().toString().trim(), docente.getText().toString().trim(),Integer.parseInt(creditos.getText().toString().trim())
             , Integer.parseInt(semestre.getText().toString().trim()));
-            ServicioAsignatura.getInstance(null).actualizar(asignatura);
+            ServicioCalPPA.getInstance(null).actualizar(asignatura,posAEditar);
             finish();
         }
         catch (Exception e)

@@ -25,7 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AgregarAsignatura" />
+        <activity
+            android:name=".activities.AgregarAsignatura"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.BuscarAsignatura"
+            android:label="@string/title_activity_buscar_asignatura"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

@@ -158,4 +158,31 @@ public class ServicioAsignatura
         }
         asignaturas.remove(posAsignatura);
     }
+    public void actualizar(Asignatura aActualizar)
+    {
+        try
+        {
+            raf=new RandomAccessFile(archivoAsignaturas,"rw");
+            raf.seek(0);
+            while (raf.getFilePointer()<archivoAsignaturas.length())
+            {
+                String actual=raf.readUTF();
+                int tam=actual.length();
+                String [] partes=actual.split(String.valueOf(Asignatura.SEPARADOR));
+                if(aActualizar.getCodigoAsignatura().trim().equals(partes[0].trim()))
+                {
+                    raf.seek(raf.getFilePointer()-(2+tam));
+                    raf.writeUTF(aActualizar.darCampos());
+                    break;
+                }
+            }
+            raf.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        listar();
+    }
 }

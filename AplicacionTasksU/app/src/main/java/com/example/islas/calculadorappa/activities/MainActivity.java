@@ -1,22 +1,20 @@
 package com.example.islas.calculadorappa.activities;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.adapters.MateriaAdapter;
 import com.example.islas.calculadorappa.R;
+import com.example.islas.calculadorappa.entities.Asignatura;
 import com.example.islas.calculadorappa.servicios.ServicioCalPPA;
 
 public class MainActivity extends AppCompatActivity
@@ -39,8 +37,20 @@ public class MainActivity extends AppCompatActivity
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
         txtPPA= findViewById(R.id.txtPPA);
-        servicioCalPPA=ServicioCalPPA.getInstance();
+        servicioCalPPA=ServicioCalPPA.getInstance(this.getFilesDir());
         inicializarRecyclerView();
+        servicioCalPPA.listar();
+        FloatingActionButton buscar = findViewById(R.id.fabBuscar);
+        buscar.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent=new Intent(MainActivity.this, BuscarAsignatura.class);
+                startActivity(intent);
+
+            }
+        });
     }
     private void inicializarRecyclerView()
     {
@@ -64,9 +74,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction)
             {
-                servicioCalPPA.eliminarMateria(viewHolder.getAdapterPosition());
-                rv.removeViewAt(viewHolder.getAdapterPosition());
-                ma.notifyItemRemoved(viewHolder.getAdapterPosition());
+                servicioCalPPA.eliminar(viewHolder.getAdapterPosition());
                 ma.notifyDataSetChanged();
                 calculaPpa();
             }
@@ -102,11 +110,14 @@ public class MainActivity extends AppCompatActivity
             if(resultCode==RESULT_OK)
             {
                 Asignatura asignatura=(Asignatura) data.getSerializableExtra(AgregarAsignatura.NUEVA_MATERIA);
-                servicioCalPPA.añadirAsignatura(asignatura);
-                ma.notifyDataSetChanged();
-                calculaPpa();
+                try {
+                    servicioCalPPA.guardar(asignatura);
+                } catch (Exception e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         }
+        ma.notifyDataSetChanged();
     }
     @Override
     protected void onResume()

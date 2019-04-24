@@ -46,6 +46,8 @@
         <item>Decimo</item>
     </string-array>
     <string name="labEsParcial">¿Es Parcial?</string>
-
-
+    <string name="labSemestre">Semestre:</string>
+    <string name="codigo_asignatura">Codigo Asignatura</string>
+    <string name="title_activity_buscar_asignatura">BuscarAsignatura</string>
+    <string name="title_activity_buscar">Buscar Asignatura</string>
 </resources>
