@@ -286,4 +286,11 @@ public class ServicioCalPPA
             e.printStackTrace();
         }
     }
+    public void aumentarCreditosEnUno()
+    {
+        for (int i = 0; i < asignaturas.size(); i++) {
+            asignaturas.get(i).setCreditos(asignaturas.get(i).getCreditos()+1);
+            actualizar(asignaturas.get(i),i);
+        }
+    }
 }

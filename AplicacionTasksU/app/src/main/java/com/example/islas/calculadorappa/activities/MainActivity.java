@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+    public void onclickPlusUno(View view)
+    {
+        servicioCalPPA.aumentarCreditosEnUno();
+        ma.notifyDataSetChanged();
+    }
     private void inicializarRecyclerView()
     {
         rv=findViewById(R.id.recyclerTareas);

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "76061506696",
+    "firebase_url": "https://learningfirestore-1b7ab.firebaseio.com",
+    "project_id": "learningfirestore-1b7ab",
+    "storage_bucket": "learningfirestore-1b7ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76061506696:android:6c3b7611a2e0e662",
+        "android_client_info": {
+          "package_name": "com.lego.firestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76061506696-m5n13ih8rim9leq9sfhpagf3kguilb75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lego.firestore",
+            "certificate_hash": "772b6569e05de0003a0bf99d2199a2ed9f8a78f9"
+          }
+        },
+        {
+          "client_id": "76061506696-h54ad6jp4i9e9dlhf8ikvod3tmmhsgis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChqFnPLyb4qZKvuKF0ZhN11PmtJ95jyrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76061506696-h54ad6jp4i9e9dlhf8ikvod3tmmhsgis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
