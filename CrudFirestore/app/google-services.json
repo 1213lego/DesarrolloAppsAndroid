@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "877084466773",
+    "firebase_url": "https://crud-firestore-89b2c.firebaseio.com",
+    "project_id": "crud-firestore-89b2c",
+    "storage_bucket": "crud-firestore-89b2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877084466773:android:45ebd6659bbf14f6",
+        "android_client_info": {
+          "package_name": "com.tlearning.android.crudfirestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877084466773-30biv32es1nk9jfqimp41fhhs1u03v7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tlearning.android.crudfirestore",
+            "certificate_hash": "772b6569e05de0003a0bf99d2199a2ed9f8a78f9"
+          }
+        },
+        {
+          "client_id": "877084466773-05p6in21vncd8ouhtkatop4r1305liim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLOI0-xFe6f_6FtYGO9n0QY0wIFytLtmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877084466773-05p6in21vncd8ouhtkatop4r1305liim.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

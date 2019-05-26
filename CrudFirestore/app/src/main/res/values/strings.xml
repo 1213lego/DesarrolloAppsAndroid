@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Cloud Firestore Crud</string>
+    <string name="action_settings">Eliminar todos</string>
+    <string name="guardar">Guardar</string>
+    <string name="serial_bicicleta">Serial</string>
+    <string name="velocidades_bicicleta">Velocidades</string>
+    <string name="marca_bicicleta">Marca</string>
+    <string name="peso_bicicleta">Peso</string>
+    <string-array name="rines_bicicleta_array">
+        <item>24</item>
+        <item>26</item>
+        <item>27.5</item>
+        <item>29</item>
+    </string-array>
+    <string name="cargando">Cargando...</string>
+    <string name="first_label">Default</string>
+    <string name="second_label">Marca</string>
+    <string name="third_label">Peso</string>
+
+</resources>
