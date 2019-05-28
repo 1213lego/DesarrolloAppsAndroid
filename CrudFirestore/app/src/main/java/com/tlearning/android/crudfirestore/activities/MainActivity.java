@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.tlearning.android.crudfirestore.R;
 import com.tlearning.android.crudfirestore.adapter.BicicletasAdapter;
+import com.tlearning.android.crudfirestore.callbacks.OnAdapterDataChangeListener;
 import com.tlearning.android.crudfirestore.callbacks.OnClickItemListener;
 import com.tlearning.android.crudfirestore.model.Bicicleta;
 import com.tlearning.android.crudfirestore.callbacks.FirestoreCallback;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity{
     private RecyclerView recyclerViewBicis;
     private BicicletasAdapter currentBicicletasAdapter;
     private RadioGroup radioGroup;
+    private TextView txtPromedio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +43,9 @@ public class MainActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         servicioBicicleta= ServicioBicicleta.getInstance();
+        txtPromedio=findViewById(R.id.txtPromedio);
         setUpRecyclerView();
         setUpRadioGroup();
-
     }
 
     private void setUpRadioGroup() {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity{
         currentBicicletasAdapter =new BicicletasAdapter(options);
         recyclerViewBicis.setAdapter(currentBicicletasAdapter);
         currentBicicletasAdapter.setOnClickItemListener(onClickItemListener);
+        currentBicicletasAdapter.setOnAdapterDataChangeListener(onAdapterDataChangeListener);
         startListeningData();
     }
     public void onClickFabButtonAdd(View view){
@@ -119,6 +123,7 @@ public class MainActivity extends AppCompatActivity{
                         });
             }
         }).attachToRecyclerView(recyclerViewBicis);
+        currentBicicletasAdapter.setOnAdapterDataChangeListener(onAdapterDataChangeListener);
         currentBicicletasAdapter.setOnClickItemListener(onClickItemListener);
     }
     private OnClickItemListener<Bicicleta> onClickItemListener=new OnClickItemListener<Bicicleta>() {
@@ -129,6 +134,21 @@ public class MainActivity extends AppCompatActivity{
             startActivityForResult(intent,REQUEST_CODE_ACTUALIZAR_BICICLETA);
         }
     };
+    private OnAdapterDataChangeListener onAdapterDataChangeListener=new OnAdapterDataChangeListener() {
+        @Override
+        public void dataChange() {
+            calcularPromedio();
+        }
+    };
+
+    private void calcularPromedio() {
+        double sum=0.0;
+        for(int i=0 ; i<currentBicicletasAdapter.getItemCount(); i++){
+            sum+= currentBicicletasAdapter.getItem(i).getPeso();
+        }
+        txtPromedio.setText("Peso promedio " + String.format( "%.3f", sum/currentBicicletasAdapter.getItemCount()));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -243,5 +263,6 @@ public class MainActivity extends AppCompatActivity{
     private void startListeningData(){
         currentBicicletasAdapter.startListening();
     }
+
 
 }

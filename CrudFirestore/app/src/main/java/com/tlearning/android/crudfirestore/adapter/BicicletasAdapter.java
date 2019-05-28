@@ -10,12 +10,14 @@ import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.tlearning.android.crudfirestore.R;
+import com.tlearning.android.crudfirestore.callbacks.OnAdapterDataChangeListener;
 import com.tlearning.android.crudfirestore.callbacks.OnClickItemListener;
 import com.tlearning.android.crudfirestore.model.Bicicleta;
 
 public class BicicletasAdapter extends FirestoreRecyclerAdapter<Bicicleta,BicicletasAdapter.ViewHolderBicicleta> {
 
     private OnClickItemListener<Bicicleta> onClickItemListener;
+    private OnAdapterDataChangeListener onAdapterDataChangeListener;
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -35,6 +37,12 @@ public class BicicletasAdapter extends FirestoreRecyclerAdapter<Bicicleta,Bicicl
         holder.peso.setText(String.valueOf(model.getPeso()));
     }
 
+    @Override
+    public void onDataChanged() {
+        if(onAdapterDataChangeListener!=null){
+            onAdapterDataChangeListener.dataChange();
+        }
+    }
     @NonNull
     @Override
     public ViewHolderBicicleta onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -46,6 +54,10 @@ public class BicicletasAdapter extends FirestoreRecyclerAdapter<Bicicleta,Bicicl
 
     public void setOnClickItemListener(OnClickItemListener<Bicicleta> onClickItemListener) {
         this.onClickItemListener = onClickItemListener;
+    }
+
+    public void setOnAdapterDataChangeListener(OnAdapterDataChangeListener onAdapterDataChangeListener) {
+        this.onAdapterDataChangeListener = onAdapterDataChangeListener;
     }
 
     public class ViewHolderBicicleta extends RecyclerView.ViewHolder
